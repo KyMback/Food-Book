@@ -2,8 +2,8 @@
 
     <PropertyGroup>
         <TargetFramework>netcoreapp3.0</TargetFramework>
-        <AssemblyName>FoodBook.Infrastructure.Services</AssemblyName>
-        <RootNamespace>FoodBook.Infrastructure.Services</RootNamespace>
+        <AssemblyName>FoodBook.Infrastructure.EFConfigs</AssemblyName>
+        <RootNamespace>FoodBook.Infrastructure.EFConfigs</RootNamespace>
     </PropertyGroup>
 
 </Project>

@@ -2,6 +2,8 @@
 
     <PropertyGroup>
         <TargetFramework>netcoreapp3.0</TargetFramework>
+        <AssemblyName>FoodBook.Domain.Entities</AssemblyName>
+        <RootNamespace>FoodBook.Domain.Entities</RootNamespace>
     </PropertyGroup>
 
 </Project>
