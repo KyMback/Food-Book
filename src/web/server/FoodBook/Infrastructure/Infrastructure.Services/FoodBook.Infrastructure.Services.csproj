@@ -1,9 +1,13 @@
 ﻿<Project Sdk="Microsoft.NET.Sdk">
 
     <PropertyGroup>
-        <TargetFramework>netcoreapp3.0</TargetFramework>
+        <TargetFramework>netcoreapp2.2.1</TargetFramework>
         <AssemblyName>FoodBook.Infrastructure.Services</AssemblyName>
         <RootNamespace>FoodBook.Infrastructure.Services</RootNamespace>
     </PropertyGroup>
+
+    <ItemGroup>
+      <PackageReference Include="Autofac" Version="4.9.0" />
+    </ItemGroup>
 
 </Project>

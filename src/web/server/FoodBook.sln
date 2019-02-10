@@ -1,6 +1,6 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "WebApi", "FoodBook\Api\WebApi\WebApi.csproj", "{227D19C9-F6B4-485C-8E25-CCA5D5CD9472}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "FoodBook.WebApi", "FoodBook\Api\WebApi\FoodBook.WebApi.csproj", "{227D19C9-F6B4-485C-8E25-CCA5D5CD9472}"
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Api", "Api", "{E35080B9-926E-46D7-B0C1-10BB4C8B8D0E}"
 EndProject
@@ -12,21 +12,21 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Domain", "Domain", "{8B7B5B
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Database", "Database", "{6E68EB9D-5525-4844-8642-A5390FA5D283}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Application", "FoodBook\Application\Application\Application.csproj", "{5B325C01-1738-4128-997E-63CADF474AB3}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "FoodBook.Application", "FoodBook\Application\Application\FoodBook.Application.csproj", "{5B325C01-1738-4128-997E-63CADF474AB3}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Domain.Entities", "FoodBook\Domain\Domain.Entities\Domain.Entities.csproj", "{450783D0-AD19-4E62-AE42-C4E9EEA5310D}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "FoodBook.Domain.Entities", "FoodBook\Domain\Domain.Entities\FoodBook.Domain.Entities.csproj", "{450783D0-AD19-4E62-AE42-C4E9EEA5310D}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Infrastructure.Services", "FoodBook\Infrastructure\Infrastructure.Services\Infrastructure.Services.csproj", "{272BDD18-5BE5-4881-924B-4E171684993A}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "FoodBook.Infrastructure.Services", "FoodBook\Infrastructure\Infrastructure.Services\FoodBook.Infrastructure.Services.csproj", "{272BDD18-5BE5-4881-924B-4E171684993A}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Database.Migrations", "FoodBook\Database\Database.Migrations\Database.Migrations.csproj", "{22E2A43A-30D2-4E8D-B70C-74C2ED7B42D3}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "FoodBook.Database.Migrations", "FoodBook\Database\Database.Migrations\FoodBook.Database.Migrations.csproj", "{22E2A43A-30D2-4E8D-B70C-74C2ED7B42D3}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Domain", "FoodBook\Domain\Domain\Domain.csproj", "{AF2344AE-5C24-4FBE-9532-A3E9A18D1C5B}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "FoodBook.Domain", "FoodBook\Domain\Domain\FoodBook.Domain.csproj", "{AF2344AE-5C24-4FBE-9532-A3E9A18D1C5B}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Infrastructure.DataAccess", "FoodBook\Infrastructure\Infrastructure.DataAccess\Infrastructure.DataAccess.csproj", "{BF37680E-92B3-4A83-BB23-29367DD9301B}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "FoodBook.Infrastructure.DataAccess", "FoodBook\Infrastructure\Infrastructure.DataAccess\FoodBook.Infrastructure.DataAccess.csproj", "{BF37680E-92B3-4A83-BB23-29367DD9301B}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Infrastructure.EFConfigs", "FoodBook\Infrastructure\Infrastructure.EFConfigs\Infrastructure.EFConfigs.csproj", "{605576C8-6B6D-4890-9B79-0BE4C10C27C4}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "FoodBook.Infrastructure.Ef.Configs", "FoodBook\Infrastructure\Infrastructure.EFConfigs\FoodBook.Infrastructure.Ef.Configs.csproj", "{605576C8-6B6D-4890-9B79-0BE4C10C27C4}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Infrastructure.Common", "FoodBook\Infrastructure\Infrastructure.Common\Infrastructure.Common.csproj", "{382E6D64-DFE6-4E0D-8D2B-CF007625B887}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "FoodBook.Infrastructure.Common", "FoodBook\Infrastructure\Infrastructure.Common\FoodBook.Infrastructure.Common.csproj", "{382E6D64-DFE6-4E0D-8D2B-CF007625B887}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution

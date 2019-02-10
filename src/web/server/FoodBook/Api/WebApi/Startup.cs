@@ -1,37 +1,67 @@
-﻿using Microsoft.AspNetCore;
+﻿using System;
+using Autofac;
+using FoodBook.Application;
+using FoodBook.Domain;
+using FoodBook.Infrastructure.Services;
+using FoodBook.WebApi.Constants;
+using FoodBook.WebApi.Extensions;
+using MediatR;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
-using Microsoft.AspNetCore.Http;
+using Microsoft.AspNetCore.Mvc;
+using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
+using Newtonsoft.Json.Serialization;
 
 namespace FoodBook.WebApi
 {
     public class Startup
     {
-        public static void Main(string[] args)
-        {
-            CreateWebHostBuilder(args).Build().Run();
-        }
-
-        public static IWebHostBuilder CreateWebHostBuilder(string[] args) =>
-            WebHost.CreateDefaultBuilder(args)
-                .UseStartup<Startup>();
+        private readonly IConfiguration _configuration;
+        private readonly IHostingEnvironment _hostingEnvironment;
         
-        // This method gets called by the runtime. Use this method to add services to the container.
-        // For more information on how to configure your application, visit https://go.microsoft.com/fwlink/?LinkID=398940
-        public void ConfigureServices(IServiceCollection services)
+        public Startup(IConfiguration configuration, IHostingEnvironment hostingEnvironment)
         {
+            _configuration = configuration;
+            _hostingEnvironment = hostingEnvironment;
+        }
+        
+        public IServiceProvider ConfigureServices(IServiceCollection services)
+        {
+            return services
+                .AddCustomOptions(_configuration, _hostingEnvironment)
+                .AddMediatR()
+                .AddCustomRouting()
+                .AddCustomSwagger()
+                .AddCustomCors()
+                .AddHttpContextAccessor()
+                .AddMvcCore()
+                .AddApiExplorer()
+                .AddCustomMvcOptions()
+                .AddCustomJsonOptions(_hostingEnvironment)
+                .Services
+                .ToAutofacServiceProvider(builder => 
+                    builder
+                        .RegisterModule<MediatrModule>()
+                        .RegisterModule<ApplicationModule>()
+                        .RegisterModule<DomainModule>()
+                        .RegisterModule<InfrastructureServicesModule>()
+                    );
         }
 
-        // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
         public void Configure(IApplicationBuilder app, IHostingEnvironment env)
         {
-            if (env.IsDevelopment())
-            {
-                app.UseDeveloperExceptionPage();
-            }
-
-            app.Run(async (context) => { await context.Response.WriteAsync("Hello World!"); });
+            app
+                .UseCors(CorsPolicyNames.AllowAny)
+                .UseDefaultFiles()
+                .UseStaticFiles()
+                .UseSwagger()
+                .UseSwaggerUI(opt =>
+                {
+                    opt.SwaggerEndpoint("/swagger/v1/swagger.json", "Food book Api");
+                    opt.RoutePrefix = string.Empty;
+                })
+                .UseMvc();
         }
     }
 }

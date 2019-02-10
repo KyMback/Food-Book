@@ -1,0 +1,15 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+
+    <PropertyGroup>
+        <TargetFramework>netcoreapp2.2.1</TargetFramework>
+        <AssemblyName>FoodBook.Infrastructure.DataAccess</AssemblyName>
+        <RootNamespace>FoodBook.Infrastructure.DataAccess</RootNamespace>
+    </PropertyGroup>
+
+    <ItemGroup>
+      <ProjectReference Include="..\..\Domain\Domain.Entities\FoodBook.Domain.Entities.csproj" />
+      <ProjectReference Include="..\Infrastructure.Common\FoodBook.Infrastructure.Common.csproj" />
+      <ProjectReference Include="..\Infrastructure.EFConfigs\FoodBook.Infrastructure.Ef.Configs.csproj" />
+    </ItemGroup>
+
+</Project>

@@ -1,0 +1,18 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+
+    <PropertyGroup>
+        <TargetFramework>netcoreapp2.2.1</TargetFramework>
+        <AssemblyName>FoodBook.Domain</AssemblyName>
+        <RootNamespace>FoodBook.Domain</RootNamespace>
+    </PropertyGroup>
+
+    <ItemGroup>
+      <ProjectReference Include="..\..\Infrastructure\Infrastructure.DataAccess\FoodBook.Infrastructure.DataAccess.csproj" />
+      <ProjectReference Include="..\..\Infrastructure\Infrastructure.Services\FoodBook.Infrastructure.Services.csproj" />
+    </ItemGroup>
+
+    <ItemGroup>
+      <PackageReference Include="Autofac" Version="4.9.0" />
+    </ItemGroup>
+
+</Project>
