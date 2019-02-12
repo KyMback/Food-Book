@@ -7,9 +7,14 @@
     </PropertyGroup>
 
     <ItemGroup>
-      <ProjectReference Include="..\..\Domain\Domain.Entities\FoodBook.Domain.Entities.csproj" />
       <ProjectReference Include="..\Infrastructure.Common\FoodBook.Infrastructure.Common.csproj" />
       <ProjectReference Include="..\Infrastructure.EFConfigs\FoodBook.Infrastructure.Ef.Configs.csproj" />
+    </ItemGroup>
+
+    <ItemGroup>
+      <Reference Include="Autofac, Version=4.9.0.0, Culture=neutral, PublicKeyToken=17863af14b0044da">
+        <HintPath>..\..\..\packages\autofac\4.9.0\lib\netstandard2.0\Autofac.dll</HintPath>
+      </Reference>
     </ItemGroup>
 
 </Project>

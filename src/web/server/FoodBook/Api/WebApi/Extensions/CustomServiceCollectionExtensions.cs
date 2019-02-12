@@ -3,6 +3,7 @@ using System.IO;
 using System.Reflection;
 using Autofac;
 using Autofac.Extensions.DependencyInjection;
+using FoodBook.Infrastructure.Common.ApplicationSettings;
 using FoodBook.WebApi.Constants;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.Extensions.Configuration;
@@ -25,11 +26,23 @@ namespace FoodBook.WebApi.Extensions
         
         public static IServiceCollection AddCustomOptions(
             this IServiceCollection services,
-            IConfiguration configuration,
             IHostingEnvironment hostingEnvironment)
         {
-            //TODO: will be added on demand
+            var builder = new ConfigurationBuilder()
+                .SetBasePath(hostingEnvironment.ContentRootPath)
+                .AddJsonFile("appsettings.json")
+                .AddJsonFile($"appsettings.{hostingEnvironment.EnvironmentName}.json", true)
+                .AddJsonFile("appsettings.Personal.json", true);
+
+            builder.AddEnvironmentVariables();
+            RegisterConfigurations(builder.Build(), services);
+            
             return services;
+        }
+
+        private static void RegisterConfigurations(IConfigurationRoot configs, IServiceCollection services)
+        {
+            services.AddSingleton(configs.GetSection(nameof(DataBaseConfigurations)).Get<DataBaseConfigurations>());
         }
         
         public static IServiceCollection AddCustomRouting(this IServiceCollection services)

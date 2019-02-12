@@ -5,4 +5,18 @@
         <RootNamespace>FoodBook.Infrastructure.EFConfigs</RootNamespace>
     </PropertyGroup>
 
+    <ItemGroup>
+      <PackageReference Include="Microsoft.EntityFrameworkCore" Version="2.2.1" />
+      <PackageReference Include="Microsoft.EntityFrameworkCore.Sqlite" Version="2.2.1" />
+    </ItemGroup>
+
+    <ItemGroup>
+      <ProjectReference Include="..\..\Domain\Domain.Entities\FoodBook.Domain.Entities.csproj" />
+      <ProjectReference Include="..\Infrastructure.Common\FoodBook.Infrastructure.Common.csproj" />
+    </ItemGroup>
+
+    <ItemGroup>
+      <Folder Include="ModelsConfigurations" />
+    </ItemGroup>
+
 </Project>
