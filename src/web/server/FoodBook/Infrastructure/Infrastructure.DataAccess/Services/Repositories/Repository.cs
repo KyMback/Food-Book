@@ -81,6 +81,8 @@ namespace FoodBook.Infrastructure.DataAccess.Services.Repositories
             IQueryable<TEntity> queryable = Storage.AsQueryable();
 
             queryable = ApplyFilterSettings(queryable, query.FilterSettings);
+
+            queryable = ApplyIncludeSettings(queryable, query.IncludeSettings);
             
             queryable = ApplySortSettings(queryable, query.SortSettings);
 
@@ -107,6 +109,11 @@ namespace FoodBook.Infrastructure.DataAccess.Services.Repositories
 
         private IQueryable<TEntity> ApplyFilterSettings(IQueryable<TEntity> queryable, FilterSettings<TEntity> settings)
         {
+            if (settings == null || settings.PredicateExpressions.IsNullOrEmpty())
+            {
+                return queryable;
+            }
+            
             foreach (Expression<Func<TEntity, bool>> predicateExpression in settings.PredicateExpressions)
             {
                 queryable = queryable.Where(predicateExpression);
@@ -117,7 +124,7 @@ namespace FoodBook.Infrastructure.DataAccess.Services.Repositories
         
         private IQueryable<TEntity> ApplySortSettings(IQueryable<TEntity> queryable, SortSettings<TEntity> settings)
         {
-            if (settings.OrderExpressions.IsNullOrEmpty())
+            if (settings == null || settings.OrderExpressions.IsNullOrEmpty())
             {
                 return queryable.OrderBy(entity => entity.Id);
             }
@@ -140,6 +147,19 @@ namespace FoodBook.Infrastructure.DataAccess.Services.Repositories
             }
 
             return queryable.Skip(settings.From).Take(settings.Count);
+        }
+
+        private IQueryable<TEntity> ApplyIncludeSettings(
+            IQueryable<TEntity> queryable,
+            IncludeSettings<TEntity> settings)
+        {
+            if (settings == null || settings.IncludeExpressionsExpressions.IsNullOrEmpty())
+            {
+                return queryable;
+            }
+            
+            // TODO: will be added on demand
+            return queryable;
         }
         
         private void SetDataToNewEntity(TEntity entity)

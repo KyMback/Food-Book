@@ -11,5 +11,7 @@ namespace FoodBook.Infrastructure.DataAccess.QuerySettings
         public SortSettings<TEntity> SortSettings { get; set; }
 
         public PageSettings PageSettings { get; set; }
+
+        public IncludeSettings<TEntity> IncludeSettings { get; set; }
     }
 }

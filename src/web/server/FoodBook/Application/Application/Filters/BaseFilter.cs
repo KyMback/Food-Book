@@ -6,7 +6,7 @@ using FoodBook.Infrastructure.DataAccess.QuerySettings;
 
 namespace FoodBook.Application.Filters
 {
-    public abstract class BaseFilter<TEntity> where TEntity: BaseEntity
+    public class BaseFilter<TEntity> where TEntity: BaseEntity
     {
         public bool IsReadonly { get; set; } = true;
         
@@ -16,12 +16,24 @@ namespace FoodBook.Application.Filters
             {
                 SortSettings = GetOrderSettings(),
                 FilterSettings = GetFilterSettings(),
+                IncludeSettings = GetIncludeSettings(),
                 IsTracked = !IsReadonly
             };
         }
 
-        protected abstract FilterSettings<TEntity> GetFilterSettings();
-        
-        protected abstract SortSettings<TEntity> GetOrderSettings();
+        protected virtual FilterSettings<TEntity> GetFilterSettings()
+        {
+            return null;
+        }
+
+        protected virtual SortSettings<TEntity> GetOrderSettings()
+        {
+            return null;
+        }
+
+        protected virtual IncludeSettings<TEntity> GetIncludeSettings()
+        {
+            return null;
+        }
     }
 }
