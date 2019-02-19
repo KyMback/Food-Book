@@ -1,4 +1,5 @@
 using FoodBook.Domain.Entities.Entities;
+using FoodBook.Domain.Entities.Entities.Recipes;
 using FoodBook.Infrastructure.Common.ApplicationSettings;
 using Microsoft.EntityFrameworkCore;
 
@@ -21,5 +22,9 @@ namespace FoodBook.Infrastructure.EFConfigs
         }
 
         public DbSet<UserAccount> Users { get; set; }
+        
+        public DbSet<Recipe> Recipes { get; set; }
+        
+        public DbSet<RecipeStep> RecipeSteps { get; set; }
     }
 }

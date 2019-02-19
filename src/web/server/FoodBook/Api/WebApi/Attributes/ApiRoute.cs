@@ -7,5 +7,9 @@ namespace FoodBook.WebApi.Attributes
         public ApiRoute(string template) : base($"api/{template}")
         {
         }
+        
+        public ApiRoute() : base($"api/[controller]")
+        {
+        }
     }
 }

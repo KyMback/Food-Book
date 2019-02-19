@@ -13,10 +13,5 @@ namespace FoodBook.WebApi.Controllers
         {
             Mediator = mediator;
         }
-        
-        protected static JsonResult JsonResponse(object data)
-        {
-            return new JsonResult(data);
-        }
     }
 }

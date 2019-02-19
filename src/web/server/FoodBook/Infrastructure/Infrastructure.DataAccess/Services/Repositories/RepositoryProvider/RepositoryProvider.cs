@@ -1,6 +1,7 @@
 using System;
 using System.Collections.Concurrent;
 using FoodBook.Domain.Entities.Entities;
+using FoodBook.Infrastructure.DataAccess.DataAccessConfigurations;
 using FoodBook.Infrastructure.DataAccess.Interfaces.Repositories;
 using FoodBook.Infrastructure.EFConfigs;
 
@@ -8,10 +9,10 @@ namespace FoodBook.Infrastructure.DataAccess.Services.Repositories.RepositoryPro
 {
     internal class RepositoryProvider: IRepositoryProvider
     {
-        private readonly BaseDbContext _baseDbContext;
+        private readonly CommonDbContext _baseDbContext;
         private readonly ConcurrentDictionary<Type, object> _repositories;
 
-        public RepositoryProvider(BaseDbContext baseDbContext)
+        public RepositoryProvider(CommonDbContext baseDbContext)
         {
             _baseDbContext = baseDbContext;
             _repositories = new ConcurrentDictionary<Type, object>();

@@ -10,7 +10,7 @@ namespace FoodBook.Infrastructure.EFConfigs.ModelsConfigurations
         {
             string typeName = typeof(TEntity).Name;
             
-            builder.ToTable(typeName);
+            builder.ToTable($"{typeName}s");
             builder
                 .HasKey(entity => entity.Id)
                 .HasName($"{typeName}Id");

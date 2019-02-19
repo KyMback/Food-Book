@@ -6,4 +6,9 @@
         <RootNamespace>FoodBook.Infrastructure.Common</RootNamespace>
     </PropertyGroup>
 
+    <ItemGroup>
+      <PackageReference Include="AutoMapper" Version="8.0.0" />
+      <PackageReference Include="JetBrains.Annotations" Version="2018.3.0" />
+    </ItemGroup>
+
 </Project>

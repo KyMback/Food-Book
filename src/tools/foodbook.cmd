@@ -41,7 +41,7 @@ echo - [96msetup environment [0m - performs initial setup (environment variabl
 echo - [96mgoto root [0m - changes path to FOODBOOK_ROOT
 echo.
 echo ----- Database -----
-echo - [96mdatabase update [0m - applies new migrations
+echo - [96mdatabase update [--recreate][0m - applies new migrations
 echo - [96mdatabase drop [0m - removes database
 echo - [96mmigration add {MigrationName: string} [0m - adds new migration
 echo   For example: foodbook migration add NewMigrationName

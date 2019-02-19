@@ -3,6 +3,7 @@ using System.IO;
 using System.Reflection;
 using Autofac;
 using Autofac.Extensions.DependencyInjection;
+using AutoMapper;
 using FoodBook.Infrastructure.Common.ApplicationSettings;
 using FoodBook.WebApi.Constants;
 using Microsoft.AspNetCore.Hosting;
@@ -14,6 +15,14 @@ namespace FoodBook.WebApi.Extensions
 {
     public static class CustomServiceCollectionExtensions
     {
+        public static IServiceCollection AddCustomMvcCore(
+            this IServiceCollection collection,
+            Action<IMvcCoreBuilder> builder)
+        {
+            builder(collection.AddMvcCore());
+            return collection;
+        }
+        
         public static AutofacServiceProvider ToAutofacServiceProvider(
             this IServiceCollection services,
             Action<ContainerBuilder> builderConfig)
@@ -74,6 +83,11 @@ namespace FoodBook.WebApi.Extensions
                             .AllowAnyMethod()
                             .AllowAnyHeader());
                 });
+        }
+        
+        public static IServiceCollection AddCustomAutoMapper(this IServiceCollection builder)
+        {
+            return builder.AddAutoMapper();
         }
     }
 }

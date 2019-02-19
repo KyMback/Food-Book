@@ -14,11 +14,13 @@ namespace FoodBook.Infrastructure.DataAccess
         {
             builder
                 .RegisterAssemblyTypes(Assembly.GetExecutingAssembly())
-                .AsImplementedInterfaces();
+                .AsImplementedInterfaces()
+                .InstancePerLifetimeScope();
 
             builder
                 .RegisterType<CommonDbContext>()
-                .As<BaseDbContext>();
+                .As<CommonDbContext>()
+                .InstancePerLifetimeScope();
         }
     }
 }

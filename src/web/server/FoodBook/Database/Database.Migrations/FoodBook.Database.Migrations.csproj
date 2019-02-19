@@ -14,10 +14,6 @@
     </ItemGroup>
 
     <ItemGroup>
-      <Folder Include="Migrations" />
-    </ItemGroup>
-
-    <ItemGroup>
       <ProjectReference Include="..\..\Domain\Domain.Entities\FoodBook.Domain.Entities.csproj" />
       <ProjectReference Include="..\..\Infrastructure\Infrastructure.EFConfigs\FoodBook.Infrastructure.Ef.Configs.csproj" />
     </ItemGroup>

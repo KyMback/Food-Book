@@ -1,9 +1,9 @@
-using FoodBook.Infrastructure.EFConfigs;
+using FoodBook.Infrastructure.DataAccess.DataAccessConfigurations;
 
 namespace FoodBook.Infrastructure.DataAccess.Services.Repositories.RepositoryProvider
 {
     internal class RepositoryOptions
     {
-        public BaseDbContext BaseDbContext { get; set; }
+        public CommonDbContext BaseDbContext { get; set; }
     }
 }

@@ -1,6 +1,8 @@
 ﻿using System;
 using Autofac;
+using AutoMapper;
 using FoodBook.Application;
+using FoodBook.Application.MappingProfiles;
 using FoodBook.Domain;
 using FoodBook.Infrastructure.DataAccess;
 using FoodBook.Infrastructure.Services;
@@ -27,15 +29,17 @@ namespace FoodBook.WebApi
             return services
                 .AddCustomOptions(_hostingEnvironment)
                 .AddMediatR()
+                .AddCustomAutoMapper()
                 .AddCustomRouting()
                 .AddCustomSwagger()
                 .AddCustomCors()
                 .AddHttpContextAccessor()
-                .AddMvcCore()
-                .AddApiExplorer()
-                .AddCustomMvcOptions()
-                .AddCustomJsonOptions(_hostingEnvironment)
-                .Services
+                .AddCustomMvcCore(builder => 
+                    builder
+                        .AddApiExplorer()
+                        .AddCustomMvcOptions()
+                        .AddCustomJsonOptions(_hostingEnvironment)
+                    )
                 .ToAutofacServiceProvider(builder => 
                     builder
                         .RegisterModule<MediatrModule>()
@@ -48,6 +52,13 @@ namespace FoodBook.WebApi
 
         public void Configure(IApplicationBuilder app, IHostingEnvironment env)
         {
+            Mapper.Initialize(cfg =>
+            {
+                cfg.AddProfile<RecipeMappingProfile>();
+            });
+            
+            Mapper.AssertConfigurationIsValid();
+            
             app
                 .UseCors(CorsPolicyNames.AllowAny)
                 .UseDefaultFiles()

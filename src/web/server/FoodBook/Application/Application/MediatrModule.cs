@@ -21,7 +21,8 @@ namespace FoodBook.Application
                 builder
                     .RegisterAssemblyTypes(Assembly.GetExecutingAssembly())
                     .AsClosedTypesOf(mediatrOpenType)
-                    .AsImplementedInterfaces();
+                    .AsImplementedInterfaces()
+                    .InstancePerLifetimeScope();
             }
         }
     }
