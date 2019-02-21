@@ -68,6 +68,7 @@ namespace FoodBook.WebApi
                 {
                     opt.SwaggerEndpoint("/swagger/v1/swagger.json", "Food book Api");
                     opt.RoutePrefix = string.Empty;
+                    
                 })
                 .UseWhen(context => _hostingEnvironment.IsDevelopment(),
                     builder => builder.UseDeveloperExceptionPage())
