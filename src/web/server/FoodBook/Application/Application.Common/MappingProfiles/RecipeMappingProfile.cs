@@ -1,9 +1,9 @@
 using AutoMapper;
-using FoodBook.Application.Recipes;
+using FoodBook.Application.Common.Recipes;
 using FoodBook.Domain.Entities.Entities.Recipes;
 using FoodBook.Infrastructure.Common.Extensions;
 
-namespace FoodBook.Application.MappingProfiles
+namespace FoodBook.Application.Common.MappingProfiles
 {
     public class RecipeMappingProfile : Profile
     {

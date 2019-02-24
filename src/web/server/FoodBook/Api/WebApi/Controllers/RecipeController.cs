@@ -1,5 +1,5 @@
 using System.Threading.Tasks;
-using FoodBook.Application.Recipes;
+using FoodBook.Application.Common.Recipes;
 using FoodBook.WebApi.Attributes;
 using MediatR;
 using Microsoft.AspNetCore.Mvc;

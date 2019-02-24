@@ -2,7 +2,10 @@
 using Autofac;
 using AutoMapper;
 using FoodBook.Application;
-using FoodBook.Application.MappingProfiles;
+using FoodBook.Application.Common;
+using FoodBook.Application.Common.MappingProfiles;
+using FoodBook.Application.GraphQL;
+using FoodBook.Application.GraphQL.MappingProfiles;
 using FoodBook.Domain;
 using FoodBook.Infrastructure.DataAccess;
 using FoodBook.Infrastructure.Services;
@@ -29,7 +32,11 @@ namespace FoodBook.WebApi
             return services
                 .AddCustomOptions(_hostingEnvironment)
                 .AddMediatR()
-                .AddCustomAutoMapper()
+                .AddCustomAutoMapper(_hostingEnvironment, cfg =>
+                {
+                    cfg.AddProfile<RecipeMappingProfile>();
+                    cfg.AddProfile<ConvertersMappingProfile>();
+                })
                 .AddCustomRouting()
                 .AddCustomSwagger()
                 .AddCustomCors()
@@ -42,8 +49,9 @@ namespace FoodBook.WebApi
                     )
                 .ToAutofacServiceProvider(builder => 
                     builder
+                        .RegisterModule<WebApiModule>()
                         .RegisterModule<MediatrModule>()
-                        .RegisterModule<ApplicationModule>()
+                        .RegisterModule<GraphQLModule>()
                         .RegisterModule<DomainModule>()
                         .RegisterModule<InfrastructureServicesModule>()
                         .RegisterModule<InfrastructureDataAccessModule>()
@@ -52,13 +60,6 @@ namespace FoodBook.WebApi
 
         public void Configure(IApplicationBuilder app, IHostingEnvironment env)
         {
-            Mapper.Initialize(cfg =>
-            {
-                cfg.AddProfile<RecipeMappingProfile>();
-            });
-            
-            Mapper.AssertConfigurationIsValid();
-            
             app
                 .UseCors(CorsPolicyNames.AllowAny)
                 .UseDefaultFiles()

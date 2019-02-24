@@ -1,7 +1,5 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "FoodBook.WebApi", "FoodBook\Api\WebApi\FoodBook.WebApi.csproj", "{227D19C9-F6B4-485C-8E25-CCA5D5CD9472}"
-EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "1. Api", "Api", "{E35080B9-926E-46D7-B0C1-10BB4C8B8D0E}"
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "2. Application", "Application", "{4D355768-0BD2-47BE-B769-D89ACF7918CE}"
@@ -12,21 +10,25 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "3. Domain", "Domain", "{8B7
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "0. Database", "Database", "{6E68EB9D-5525-4844-8642-A5390FA5D283}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "FoodBook.Application", "FoodBook\Application\Application\FoodBook.Application.csproj", "{5B325C01-1738-4128-997E-63CADF474AB3}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "FoodBook.WebApi", "FoodBook\Api\WebApi\FoodBook.WebApi.csproj", "{227D19C9-F6B4-485C-8E25-CCA5D5CD9472}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "FoodBook.Application.Common", "FoodBook\Application\Application.Common\FoodBook.Application.Common.csproj", "{5B325C01-1738-4128-997E-63CADF474AB3}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "FoodBook.Application.GraphQL", "FoodBook\Application\Application.GraphQL\FoodBook.Application.GraphQL.csproj", "{F0FFBA59-A1A4-46D7-91E2-CB8A0F2895B4}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "FoodBook.Domain.Entities", "FoodBook\Domain\Domain.Entities\FoodBook.Domain.Entities.csproj", "{450783D0-AD19-4E62-AE42-C4E9EEA5310D}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "FoodBook.Infrastructure.Services", "FoodBook\Infrastructure\Infrastructure.Services\FoodBook.Infrastructure.Services.csproj", "{272BDD18-5BE5-4881-924B-4E171684993A}"
-EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "FoodBook.Database.Migrations", "FoodBook\Database\Database.Migrations\FoodBook.Database.Migrations.csproj", "{22E2A43A-30D2-4E8D-B70C-74C2ED7B42D3}"
-EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "FoodBook.Domain", "FoodBook\Domain\Domain\FoodBook.Domain.csproj", "{AF2344AE-5C24-4FBE-9532-A3E9A18D1C5B}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "FoodBook.Infrastructure.Services", "FoodBook\Infrastructure\Infrastructure.Services\FoodBook.Infrastructure.Services.csproj", "{272BDD18-5BE5-4881-924B-4E171684993A}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "FoodBook.Infrastructure.DataAccess", "FoodBook\Infrastructure\Infrastructure.DataAccess\FoodBook.Infrastructure.DataAccess.csproj", "{BF37680E-92B3-4A83-BB23-29367DD9301B}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "FoodBook.Infrastructure.Ef.Configs", "FoodBook\Infrastructure\Infrastructure.EFConfigs\FoodBook.Infrastructure.Ef.Configs.csproj", "{605576C8-6B6D-4890-9B79-0BE4C10C27C4}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "FoodBook.Infrastructure.Common", "FoodBook\Infrastructure\Infrastructure.Common\FoodBook.Infrastructure.Common.csproj", "{382E6D64-DFE6-4E0D-8D2B-CF007625B887}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "FoodBook.Database.Migrations", "FoodBook\Database\Database.Migrations\FoodBook.Database.Migrations.csproj", "{22E2A43A-30D2-4E8D-B70C-74C2ED7B42D3}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -51,7 +53,6 @@ Global
 		{272BDD18-5BE5-4881-924B-4E171684993A}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{272BDD18-5BE5-4881-924B-4E171684993A}.Release|Any CPU.Build.0 = Release|Any CPU
 		{22E2A43A-30D2-4E8D-B70C-74C2ED7B42D3}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{22E2A43A-30D2-4E8D-B70C-74C2ED7B42D3}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{22E2A43A-30D2-4E8D-B70C-74C2ED7B42D3}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{22E2A43A-30D2-4E8D-B70C-74C2ED7B42D3}.Release|Any CPU.Build.0 = Release|Any CPU
 		{AF2344AE-5C24-4FBE-9532-A3E9A18D1C5B}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
@@ -70,6 +71,10 @@ Global
 		{382E6D64-DFE6-4E0D-8D2B-CF007625B887}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{382E6D64-DFE6-4E0D-8D2B-CF007625B887}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{382E6D64-DFE6-4E0D-8D2B-CF007625B887}.Release|Any CPU.Build.0 = Release|Any CPU
+		{F0FFBA59-A1A4-46D7-91E2-CB8A0F2895B4}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{F0FFBA59-A1A4-46D7-91E2-CB8A0F2895B4}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{F0FFBA59-A1A4-46D7-91E2-CB8A0F2895B4}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{F0FFBA59-A1A4-46D7-91E2-CB8A0F2895B4}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(NestedProjects) = preSolution
 		{227D19C9-F6B4-485C-8E25-CCA5D5CD9472} = {E35080B9-926E-46D7-B0C1-10BB4C8B8D0E}
@@ -81,5 +86,6 @@ Global
 		{BF37680E-92B3-4A83-BB23-29367DD9301B} = {465D9844-D1F2-4754-AE3D-7DEA1CEEF8CC}
 		{605576C8-6B6D-4890-9B79-0BE4C10C27C4} = {465D9844-D1F2-4754-AE3D-7DEA1CEEF8CC}
 		{382E6D64-DFE6-4E0D-8D2B-CF007625B887} = {465D9844-D1F2-4754-AE3D-7DEA1CEEF8CC}
+		{F0FFBA59-A1A4-46D7-91E2-CB8A0F2895B4} = {4D355768-0BD2-47BE-B769-D89ACF7918CE}
 	EndGlobalSection
 EndGlobal

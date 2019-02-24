@@ -4,8 +4,11 @@ using System.Reflection;
 using Autofac;
 using Autofac.Extensions.DependencyInjection;
 using AutoMapper;
+using FoodBook.Application.Common.MappingProfiles;
+using FoodBook.Application.GraphQL.MappingProfiles;
 using FoodBook.Infrastructure.Common.ApplicationSettings;
 using FoodBook.WebApi.Constants;
+using GraphQL;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
@@ -15,14 +18,25 @@ namespace FoodBook.WebApi.Extensions
 {
     public static class CustomServiceCollectionExtensions
     {
+        /// <summary>
+        /// Adds services ti DI container for mvc core
+        /// </summary>
+        /// <param name="services">DI services collection</param>
+        /// <param name="builder">Builder for custom configuring mvc core</param>
         public static IServiceCollection AddCustomMvcCore(
-            this IServiceCollection collection,
+            this IServiceCollection services,
             Action<IMvcCoreBuilder> builder)
         {
-            builder(collection.AddMvcCore());
-            return collection;
+            builder(services.AddMvcCore());
+            return services;
         }
         
+        /// <summary>
+        /// Adds services
+        /// </summary>
+        /// <param name="services">DI services collection</param>
+        /// <param name="builderConfig"></param>
+        /// <returns></returns>
         public static AutofacServiceProvider ToAutofacServiceProvider(
             this IServiceCollection services,
             Action<ContainerBuilder> builderConfig)
@@ -71,9 +85,9 @@ namespace FoodBook.WebApi.Extensions
             });
         }
         
-        public static IServiceCollection AddCustomCors(this IServiceCollection builder)
+        public static IServiceCollection AddCustomCors(this IServiceCollection services)
         {
-            return builder.AddCors(
+            return services.AddCors(
                 options =>
                 {
                     options.AddPolicy(
@@ -85,9 +99,19 @@ namespace FoodBook.WebApi.Extensions
                 });
         }
         
-        public static IServiceCollection AddCustomAutoMapper(this IServiceCollection builder)
+        public static IServiceCollection AddCustomAutoMapper(
+            this IServiceCollection services,
+            IHostingEnvironment hostingEnvironment,
+            Action<IMapperConfigurationExpression> builder)
         {
-            return builder.AddAutoMapper();
+            services.AddAutoMapper(builder);
+            if (hostingEnvironment.IsDevelopment())
+            {
+                Mapper.Initialize(builder);
+                Mapper.AssertConfigurationIsValid();
+            }
+
+            return services;
         }
     }
 }

@@ -4,7 +4,7 @@ using Autofac;
 using MediatR;
 using Module = Autofac.Module;
 
-namespace FoodBook.Application
+namespace FoodBook.Application.Common
 {
     public class MediatrModule: Module
     {

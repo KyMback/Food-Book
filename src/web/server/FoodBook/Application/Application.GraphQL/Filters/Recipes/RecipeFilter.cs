@@ -2,7 +2,7 @@ using System;
 using FoodBook.Domain.Entities.Entities.Recipes;
 using FoodBook.Infrastructure.DataAccess.QuerySettings;
 
-namespace FoodBook.Application.Filters.Recipes
+namespace FoodBook.Application.GraphQL.Filters.Recipes
 {
     public class RecipeFilter : BaseFilter<Recipe>
     {

@@ -1,7 +1,7 @@
 using FoodBook.Domain.Entities.Entities;
 using FoodBook.Infrastructure.DataAccess.QuerySettings;
 
-namespace FoodBook.Application.Filters
+namespace FoodBook.Application.GraphQL.Filters
 {
     public class BaseFilter<TEntity> where TEntity: BaseEntity
     {

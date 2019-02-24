@@ -1,9 +1,9 @@
 using FoodBook.Domain.Entities.Entities;
 using FoodBook.Infrastructure.DataAccess.QuerySettings;
 
-namespace FoodBook.Application.Filters
+namespace FoodBook.Application.GraphQL.Filters
 {
-    public abstract class BasePagingFilter<TEntity>: BaseFilter<TEntity> where TEntity: BaseEntity
+    public class BasePagingFilter<TEntity>: BaseFilter<TEntity> where TEntity: BaseEntity
     {
         public int From { get; set; }
 

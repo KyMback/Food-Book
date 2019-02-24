@@ -1,7 +1,7 @@
 using GraphQL.Builders;
 using GraphQL.Types;
 
-namespace FoodBook.Application.GraphQL.Schemes
+namespace FoodBook.Application.GraphQL.Schemas
 {
     public abstract class BaseGraphScheme : Schema
     {
