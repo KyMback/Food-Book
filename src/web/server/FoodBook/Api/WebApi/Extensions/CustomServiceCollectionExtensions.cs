@@ -55,9 +55,9 @@ namespace FoodBook.WebApi.Extensions
                 .SetBasePath(hostingEnvironment.ContentRootPath)
                 .AddJsonFile("appsettings.json")
                 .AddJsonFile($"appsettings.{hostingEnvironment.EnvironmentName}.json", true)
-                .AddJsonFile("appsettings.Personal.json", true);
-
-            builder.AddEnvironmentVariables();
+                .AddJsonFile("appsettings.Personal.json", true)
+                .AddEnvironmentVariables();
+            
             RegisterConfigurations(builder.Build(), services);
             
             return services;
@@ -93,9 +93,10 @@ namespace FoodBook.WebApi.Extensions
                     options.AddPolicy(
                         CorsPolicyNames.AllowAny,
                         x => x
-                            .AllowAnyOrigin()
+                            .WithOrigins("http://localhost:3000")
                             .AllowAnyMethod()
-                            .AllowAnyHeader());
+                            .AllowAnyHeader()
+                            .AllowCredentials());
                 });
         }
         

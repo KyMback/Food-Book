@@ -18,6 +18,9 @@ IF "%1"=="help" (
 ) ELSE IF "%1 %2"=="goto root" (
   call "%~dp0\gotoRoot.cmd"
   exit /b
+) ELSE IF "%1 %2 %3"=="qa heroku deploy" (
+  call "%~dp0\docker-deploy\deploy-heroku.cmd"
+  exit /b
 ) ELSE (
   echo Food-Book CLI: Unknown command: %*
   echo.
@@ -50,3 +53,5 @@ echo ----- Client -------
 echo.
 echo ----- Server -------
 echo - [96mserver run [0m - runs Food-Book API using Kestrel web server
+echo ----- Deploy -------
+echo - [96mqa heroku deploy [0m - deploy food-book into qa environment

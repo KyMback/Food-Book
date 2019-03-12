@@ -157,8 +157,11 @@ namespace FoodBook.Infrastructure.DataAccess.Services.Repositories
             {
                 return queryable;
             }
-            
-            // TODO: will be added on demand
+
+            foreach (var expression in settings.IncludeExpressionsExpressions)
+            {
+                queryable = queryable.Include(expression);
+            }
             return queryable;
         }
         

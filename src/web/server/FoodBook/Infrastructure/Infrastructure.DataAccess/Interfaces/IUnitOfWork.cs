@@ -54,10 +54,10 @@ namespace FoodBook.Infrastructure.DataAccess.Interfaces
         /// </summary>
         /// <param name="entity">Entity for deleting</param>
         Task Delete<TEntity>(TEntity entity) where TEntity : BaseEntity;
-        
+
         /// <summary>
         /// Commits changes
         /// </summary>
-        Task Commit<TEntity>() where TEntity : BaseEntity;
+        Task Commit();
     }
 }

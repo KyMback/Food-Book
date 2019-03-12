@@ -15,7 +15,8 @@ namespace FoodBook.Database.Migrations
         {
             var builder = new ConfigurationBuilder()
                 .AddJsonFile("appsettings.json")
-                .AddJsonFile("appsettings.Personal.json", true);
+                .AddJsonFile("appsettings.Personal.json", true)
+                .AddEnvironmentVariables();
 
             return builder.Build().GetSection(nameof(DataBaseConfigurations)).Get<DataBaseConfigurations>();
         }
