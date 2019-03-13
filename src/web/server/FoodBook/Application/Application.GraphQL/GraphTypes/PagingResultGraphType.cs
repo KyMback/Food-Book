@@ -1,4 +1,4 @@
-using FoodBook.Domain.Entities.Entities;
+using FoodBook.Domain.Entities;
 using FoodBook.Infrastructure.DataAccess.ResultHelpers;
 using GraphQL.Types;
 

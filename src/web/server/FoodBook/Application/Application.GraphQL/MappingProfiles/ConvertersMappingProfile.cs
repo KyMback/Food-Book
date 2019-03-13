@@ -3,12 +3,14 @@ using AutoMapper;
 using FoodBook.Application.GraphQL.Extensions;
 using FoodBook.Application.GraphQL.Filters;
 using FoodBook.Application.GraphQL.Filters.Recipes;
-using FoodBook.Domain.Entities.Entities.Recipes;
+using FoodBook.Domain.Entities.Recipes;
 using GraphQL.Types;
+using JetBrains.Annotations;
 
 namespace FoodBook.Application.GraphQL.MappingProfiles
 {
-    public class ConvertersMappingProfile : Profile
+    [UsedImplicitly]
+    internal class ConvertersMappingProfile : Profile
     {
         public ConvertersMappingProfile()
         {

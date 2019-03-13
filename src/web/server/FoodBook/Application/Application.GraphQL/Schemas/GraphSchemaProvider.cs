@@ -5,17 +5,17 @@ namespace FoodBook.Application.GraphQL.Schemas
 {
     internal class GraphSchemaProvider : IGraphSchemaProvider
     {
-        private readonly IServiceResolver _serviceResolver;
+        private readonly ISafeServiceResolver _safeServiceResolver;
         
-        public GraphSchemaProvider(IServiceResolver serviceResolver
+        public GraphSchemaProvider(ISafeServiceResolver safeServiceResolver
         )
         {
-            _serviceResolver = serviceResolver;
+            _safeServiceResolver = safeServiceResolver;
         }
         
         public Schema ResolveSchema()
         {
-            return _serviceResolver.GetService<CommonGraphScheme>();
+            return _safeServiceResolver.GetService<CommonGraphScheme>();
         }
     }
 }

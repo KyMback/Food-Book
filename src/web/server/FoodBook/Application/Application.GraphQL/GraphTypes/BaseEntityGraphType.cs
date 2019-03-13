@@ -1,4 +1,4 @@
-using FoodBook.Domain.Entities.Entities;
+using FoodBook.Domain.Entities;
 using GraphQL.Types;
 
 namespace FoodBook.Application.GraphQL.GraphTypes

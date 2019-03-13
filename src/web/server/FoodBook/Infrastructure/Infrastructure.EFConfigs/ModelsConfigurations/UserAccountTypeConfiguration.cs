@@ -1,4 +1,4 @@
-using FoodBook.Domain.Entities.Entities;
+using FoodBook.Domain.Entities;
 using JetBrains.Annotations;
 using Microsoft.EntityFrameworkCore.Metadata.Builders;
 
@@ -7,11 +7,10 @@ namespace FoodBook.Infrastructure.EFConfigs.ModelsConfigurations
     [UsedImplicitly]
     public class UserAccountTypeConfiguration : BaseEntityTypeConfiguration<UserAccount>
     {
-        public override void Configure(EntityTypeBuilder<UserAccount> builder)
+        protected override void ConfigureEntity(EntityTypeBuilder<UserAccount> builder)
         {
             builder.HasAlternateKey(account => account.Email);
-            
-            base.Configure(builder);
+            builder.HasAlternateKey(account => account.Login);
         }
     }
 }

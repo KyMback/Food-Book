@@ -1,8 +1,8 @@
 using System.Threading;
 using System.Threading.Tasks;
 using AutoMapper;
-using FoodBook.Domain.Entities.Entities.Recipes;
-using FoodBook.Domain.Interfaces.Recipes;
+using FoodBook.Domain.Entities.Recipes;
+using FoodBook.Domain.Recipes;
 using FoodBook.Infrastructure.DataAccess.Interfaces;
 using JetBrains.Annotations;
 using MediatR;

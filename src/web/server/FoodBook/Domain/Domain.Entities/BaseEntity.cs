@@ -1,6 +1,6 @@
 using System;
 
-namespace FoodBook.Domain.Entities.Entities
+namespace FoodBook.Domain.Entities
 {
     public class BaseEntity
     {

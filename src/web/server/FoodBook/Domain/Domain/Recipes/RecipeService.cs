@@ -1,12 +1,11 @@
 using System.Collections.Generic;
 using System.Threading.Tasks;
-using FoodBook.Domain.Entities.Entities.Recipes;
-using FoodBook.Domain.Interfaces.Recipes;
+using FoodBook.Domain.Entities.Recipes;
 using FoodBook.Infrastructure.DataAccess.Interfaces;
 using FoodBook.Infrastructure.DataAccess.QuerySettings;
 using FoodBook.Infrastructure.DataAccess.ResultHelpers;
 
-namespace FoodBook.Domain.Services.Recipes
+namespace FoodBook.Domain.Recipes
 {
     public class RecipeService : IRecipeService
     {

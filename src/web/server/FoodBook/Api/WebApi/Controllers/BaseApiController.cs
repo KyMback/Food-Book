@@ -1,9 +1,10 @@
+using FoodBook.Infrastructure.Common;
 using MediatR;
 using Microsoft.AspNetCore.Mvc;
 
 namespace FoodBook.WebApi.Controllers
 {
-    [Produces("application/json")]
+    [Produces(SystemSettings.DefaultContentTypeForApiControllers)]
     [ApiController]
     public class BaseApiController: ControllerBase
     {

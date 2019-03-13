@@ -1,4 +1,4 @@
-using FoodBook.Domain.Entities.Entities.Recipes;
+using FoodBook.Domain.Entities.Recipes;
 using GraphQL.Types;
 
 namespace FoodBook.Application.GraphQL.GraphTypes
@@ -9,6 +9,9 @@ namespace FoodBook.Application.GraphQL.GraphTypes
         {
             Field<StringGraphType>().Name("title").Resolve(ctx => ctx.Source.Title);
             Field<StringGraphType>().Name("ingredients").Resolve(ctx => ctx.Source.Ingredients);
+            Field<StringGraphType>().Name("createdBy").Resolve(ctx => ctx.Source.CreatedBy.Login);
+            Field<IntGraphType>().Name("rating").Resolve(ctx => ctx.Source.Rating.RatingNumber);
+            Field<DateTimeGraphType>().Name("createdOn").Resolve(ctx => ctx.Source.CreatedOn);
             
             base.Initialize();
         }

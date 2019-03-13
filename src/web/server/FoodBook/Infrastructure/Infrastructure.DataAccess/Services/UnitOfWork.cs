@@ -1,6 +1,7 @@
+using System;
 using System.Collections.Generic;
 using System.Threading.Tasks;
-using FoodBook.Domain.Entities.Entities;
+using FoodBook.Domain.Entities;
 using FoodBook.Infrastructure.Common.Services;
 using FoodBook.Infrastructure.DataAccess.Interfaces;
 using FoodBook.Infrastructure.DataAccess.Interfaces.Repositories;
@@ -14,14 +15,25 @@ namespace FoodBook.Infrastructure.DataAccess.Services
     internal class UnitOfWork : IUnitOfWork
     {
         private readonly IDataTransitionService _dataTransitionService;
-        private readonly IServiceResolver _serviceResolver;
+        private readonly ISafeServiceResolver _safeServiceResolver;
         
         public UnitOfWork(
             IDataTransitionService dataTransitionService,
-            IServiceResolver serviceResolver)
+            ISafeServiceResolver safeServiceResolver)
         {
             _dataTransitionService = dataTransitionService;
-            _serviceResolver = serviceResolver;
+            _safeServiceResolver = safeServiceResolver;
+        }
+        
+        public async Task<TEntity> GetById<TEntity>(Guid id, bool isReadOnly) where TEntity : BaseEntity
+        {
+            var query = new Query<TEntity>
+            {
+                IsTracked = !isReadOnly,
+                FilterSettings = new FilterSettings<TEntity>().ApplySettings(entity => entity.Id == id)
+            };
+            
+            return await GetRepository<TEntity>().Get(query);
         }
         
         public async Task<TEntity> Get<TEntity>(Query<TEntity> query) where TEntity : BaseEntity
@@ -66,7 +78,7 @@ namespace FoodBook.Infrastructure.DataAccess.Services
         
         private IRepository<TEntity> GetRepository<TEntity>() where TEntity : BaseEntity
         {
-            return _serviceResolver.GetService<IRepository<TEntity>>();
+            return _safeServiceResolver.GetService<IRepository<TEntity>>();
         }
     }
 }

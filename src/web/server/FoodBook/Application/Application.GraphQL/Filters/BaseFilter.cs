@@ -1,4 +1,4 @@
-using FoodBook.Domain.Entities.Entities;
+using FoodBook.Domain.Entities;
 using FoodBook.Infrastructure.DataAccess.QuerySettings;
 
 namespace FoodBook.Application.GraphQL.Filters

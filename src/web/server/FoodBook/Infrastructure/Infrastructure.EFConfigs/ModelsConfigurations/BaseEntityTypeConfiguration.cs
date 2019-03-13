@@ -1,10 +1,10 @@
-using FoodBook.Domain.Entities.Entities;
+using FoodBook.Domain.Entities;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Metadata.Builders;
 
 namespace FoodBook.Infrastructure.EFConfigs.ModelsConfigurations
 {
-    public class BaseEntityTypeConfiguration<TEntity> : IEntityTypeConfiguration<TEntity> where TEntity : BaseEntity
+    public abstract class BaseEntityTypeConfiguration<TEntity> : IEntityTypeConfiguration<TEntity> where TEntity : BaseEntity
     {
         public virtual void Configure(EntityTypeBuilder<TEntity> builder)
         {
@@ -14,6 +14,10 @@ namespace FoodBook.Infrastructure.EFConfigs.ModelsConfigurations
             builder
                 .HasKey(entity => entity.Id)
                 .HasName($"{typeName}Id");
+
+            ConfigureEntity(builder);
         }
+
+        protected abstract void ConfigureEntity(EntityTypeBuilder<TEntity> builder);
     }
 }

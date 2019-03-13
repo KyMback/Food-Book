@@ -4,8 +4,8 @@ using FoodBook.Application.GraphQL.Extensions;
 using FoodBook.Application.GraphQL.Filters;
 using FoodBook.Application.GraphQL.Filters.Recipes;
 using FoodBook.Application.GraphQL.GraphTypes;
-using FoodBook.Domain.Entities.Entities.Recipes;
-using FoodBook.Domain.Interfaces.Recipes;
+using FoodBook.Domain.Entities.Recipes;
+using FoodBook.Domain.Recipes;
 using GraphQL.Types;
 
 namespace FoodBook.Application.GraphQL.Schemas

@@ -7,8 +7,10 @@ using AutoMapper;
 using FoodBook.Application.Common.MappingProfiles;
 using FoodBook.Application.GraphQL.MappingProfiles;
 using FoodBook.Infrastructure.Common.ApplicationSettings;
+using FoodBook.Infrastructure.Services.Exceptions;
 using FoodBook.WebApi.Constants;
 using GraphQL;
+using Microsoft.AspNetCore.Authentication.Cookies;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
@@ -112,6 +114,25 @@ namespace FoodBook.WebApi.Extensions
                 Mapper.AssertConfigurationIsValid();
             }
 
+            return services;
+        }
+        
+        public static IServiceCollection AddCustomAuthentication(this IServiceCollection services)
+        {
+            services
+                .AddAuthentication(CookieAuthenticationDefaults.AuthenticationScheme)
+                .AddCookie(cfg =>
+                {
+                    cfg.AccessDeniedPath = "/";
+                    cfg.ExpireTimeSpan = TimeSpan.FromDays(7);
+                    cfg.LoginPath = "/";
+                    cfg.Events.OnRedirectToLogin = context =>
+                    {
+                        context.Response.StatusCode = 401;
+                        throw new NotAuthorizedException();
+                    };
+                });
+            
             return services;
         }
     }

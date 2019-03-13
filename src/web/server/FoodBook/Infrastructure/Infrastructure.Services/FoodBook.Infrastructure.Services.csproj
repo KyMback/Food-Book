@@ -10,4 +10,8 @@
       <PackageReference Include="Autofac" Version="4.9.1" />
     </ItemGroup>
 
+    <ItemGroup>
+      <ProjectReference Include="..\Infrastructure.Common\FoodBook.Infrastructure.Common.csproj" />
+    </ItemGroup>
+
 </Project>
