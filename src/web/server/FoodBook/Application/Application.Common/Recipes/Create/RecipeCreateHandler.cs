@@ -7,7 +7,7 @@ using FoodBook.Infrastructure.DataAccess.Interfaces;
 using JetBrains.Annotations;
 using MediatR;
 
-namespace FoodBook.Application.Common.Recipes
+namespace FoodBook.Application.Common.Recipes.Create
 {
     [UsedImplicitly]
     public class RecipeCreateHandler : IRequestHandler<RecipeCreateRequest, RecipeCreateResponse>

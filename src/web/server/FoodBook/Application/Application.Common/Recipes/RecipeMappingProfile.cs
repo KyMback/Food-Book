@@ -1,10 +1,9 @@
 using AutoMapper;
-using FoodBook.Application.Common.Recipes;
+using FoodBook.Application.Common.Recipes.Create;
 using FoodBook.Domain.Entities.Recipes;
-using FoodBook.Infrastructure.Common.Extensions;
 using JetBrains.Annotations;
 
-namespace FoodBook.Application.Common.MappingProfiles
+namespace FoodBook.Application.Common.Recipes
 {
     [UsedImplicitly]
     internal class RecipeMappingProfile : Profile

@@ -4,7 +4,6 @@ using Autofac;
 using AutoMapper;
 using FoodBook.Application;
 using FoodBook.Application.Common;
-using FoodBook.Application.Common.MappingProfiles;
 using FoodBook.Application.GraphQL;
 using FoodBook.Application.GraphQL.MappingProfiles;
 using FoodBook.Domain;

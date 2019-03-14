@@ -8,7 +8,7 @@ namespace FoodBook.Infrastructure.Common
         {
             builder.RegisterGeneric(typeof(SafeInjection<>))
                 .AsSelf()
-                .SingleInstance();
+                .InstancePerLifetimeScope();
         }
     }
 }

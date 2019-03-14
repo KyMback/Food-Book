@@ -1,6 +1,6 @@
 using MediatR;
 
-namespace FoodBook.Application.Common.Recipes
+namespace FoodBook.Application.Common.Recipes.Create
 {
     public class RecipeCreateRequest : IRequest<RecipeCreateResponse>
     {

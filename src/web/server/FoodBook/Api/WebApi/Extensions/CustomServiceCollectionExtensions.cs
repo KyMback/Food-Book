@@ -4,7 +4,6 @@ using System.Reflection;
 using Autofac;
 using Autofac.Extensions.DependencyInjection;
 using AutoMapper;
-using FoodBook.Application.Common.MappingProfiles;
 using FoodBook.Application.GraphQL.MappingProfiles;
 using FoodBook.Infrastructure.Common.ApplicationSettings;
 using FoodBook.Infrastructure.Services.Exceptions;
