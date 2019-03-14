@@ -28,7 +28,7 @@ namespace FoodBook.Application.GraphQL.Extensions
             where TSource : ResolveFieldContext<object>
         {
             return mappingExpression
-                .ForMember(d => d.IsReadonly, o => o.MapFrom(s => true));
+                .ForMember(d => d.IsReadonly, o => o.MapFrom(s => false));
         }
     }
 }

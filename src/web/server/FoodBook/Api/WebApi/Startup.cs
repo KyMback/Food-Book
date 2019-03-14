@@ -41,6 +41,7 @@ namespace FoodBook.WebApi
                     {
                         Assembly.GetAssembly(typeof(WebApiModule)),
                         Assembly.GetAssembly(typeof(MediatrModule)),
+                        Assembly.GetAssembly(typeof(GraphQLModule)),
                         Assembly.GetAssembly(typeof(DomainModule)),
                         Assembly.GetAssembly(typeof(InfrastructureServicesModule))
                     });
