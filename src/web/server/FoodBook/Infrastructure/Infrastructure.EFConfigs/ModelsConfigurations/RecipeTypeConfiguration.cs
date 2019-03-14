@@ -15,21 +15,25 @@ namespace FoodBook.Infrastructure.EFConfigs.ModelsConfigurations
                 .Property(recipe => recipe.Title)
                 .HasMaxLength(LengthConstants.ShortMaxLength)
                 .IsRequired();
+            
             builder
                 .Property(recipe => recipe.Ingredients)
                 .HasMaxLength(LengthConstants.LongMaxLength)
                 .IsRequired();
+            
             builder
                 .HasMany(recipe => recipe.Steps)
                 .WithOne()
                 .HasForeignKey(step => step.RecipeId);
+            
             builder
                 .HasOne(recipe => recipe.CreatedBy)
                 .WithMany()
                 .HasForeignKey(recipe => recipe.CreatedById);
+            
             builder.HasOne(recipe => recipe.Rating)
                 .WithOne()
-                .HasPrincipalKey<Rating>(rating => rating.EntityId);
+                .HasForeignKey<Rating>(rating => rating.EntityId);
         }
     }
 }

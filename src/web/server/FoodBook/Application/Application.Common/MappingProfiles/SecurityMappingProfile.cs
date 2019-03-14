@@ -18,6 +18,12 @@ namespace FoodBook.Application.Common.MappingProfiles
             CreateMap<UserAccount, AuthenticateResponse>();
 
             CreateMap<SignInRequest, AuthenticationData>();
+
+            CreateMap<AuthenticationData, AuthenticateRequest>();
+
+            CreateMap<UserAccount, CryptographicData>()
+                .ForMember(d => d.Salt, o => o.MapFrom(s => Convert.FromBase64String(s.Salt)))
+                .ForMember(d => d.HashKey, o => o.MapFrom(s => Convert.FromBase64String(s.SecurityStamp)));
             
             CreateMap<SignUpRequest, UserAccount>()
                 .ForMember(d => d.Email, o => o.MapFrom(s => s.Email))

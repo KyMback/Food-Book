@@ -33,7 +33,7 @@ namespace FoodBook.Application.Common.Security.Authenticate
             UserAccount userAccount = await _userAccountService.Get(new Query<UserAccount>
             {
                 FilterSettings = new FilterSettings<UserAccount>().ApplySettings(account =>
-                    account.Email == request.UserName || account.Login == request.UserName)
+                    account.Email == request.Login || account.Login == request.Login)
             });
             
             if (userAccount == null)
