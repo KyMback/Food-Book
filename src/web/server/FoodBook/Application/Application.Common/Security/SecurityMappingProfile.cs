@@ -8,7 +8,7 @@ using FoodBook.Infrastructure.Common.Services;
 using FoodBook.Infrastructure.Services.Security;
 using JetBrains.Annotations;
 
-namespace FoodBook.Application.Common.MappingProfiles
+namespace FoodBook.Application.Common.Security
 {
     [UsedImplicitly]
     internal class SecurityMappingProfile : Profile

@@ -1,6 +1,6 @@
 using System;
 
-namespace FoodBook.Application.Common.Recipes
+namespace FoodBook.Application.Common.Recipes.Create
 {
     public class RecipeCreateResponse
     {
