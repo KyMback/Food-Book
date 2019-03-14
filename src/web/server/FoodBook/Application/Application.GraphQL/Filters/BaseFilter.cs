@@ -20,17 +20,17 @@ namespace FoodBook.Application.GraphQL.Filters
 
         protected virtual FilterSettings<TEntity> GetFilterSettings()
         {
-            return null;
+            return new FilterSettings<TEntity>();
         }
 
         protected virtual SortSettings<TEntity> GetOrderSettings()
         {
-            return null;
+            return new SortSettings<TEntity>();
         }
 
         protected virtual IncludeSettings<TEntity> GetIncludeSettings()
         {
-            return null;
+            return new IncludeSettings<TEntity>();
         }
     }
 }

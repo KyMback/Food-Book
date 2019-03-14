@@ -8,6 +8,7 @@ using FoodBook.Application.Common.MappingProfiles;
 using FoodBook.Application.GraphQL;
 using FoodBook.Application.GraphQL.MappingProfiles;
 using FoodBook.Domain;
+using FoodBook.Infrastructure.Common;
 using FoodBook.Infrastructure.DataAccess;
 using FoodBook.Infrastructure.Services;
 using FoodBook.WebApi.Constants;
@@ -64,6 +65,7 @@ namespace FoodBook.WebApi
                         .RegisterModule<DomainModule>()
                         .RegisterModule<InfrastructureServicesModule>()
                         .RegisterModule<InfrastructureDataAccessModule>()
+                        .RegisterModule<InfrastructureCommonModule>()
                     );
         }
 
