@@ -8,5 +8,5 @@ FoodBook позволяет осуществлять поиск рецептов
 
 Спецификация требований к программному обеспечению находится [здесь](./Documents/SRS.md).
 Пользовательские истории находятся [здесь](./Documents/UserStory.md).
-Диаграмма сгорания задач имеет ![вид](./burndown.svg):
-<img src="./burndown.svg">
+Диаграмма сгорания задач имеет ![вид](./Documents/burndown.svg):
+<img src="./Documents/burndown.svg">
