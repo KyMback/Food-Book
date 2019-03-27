@@ -55,6 +55,7 @@ namespace FoodBook.WebApi
                         .AddApiExplorer()
                         .AddCustomMvcOptions()
                         .AddCustomJsonOptions(_hostingEnvironment)
+                        .AddAuthorization()
                     )
                 .ToAutofacServiceProvider(builder => 
                     builder

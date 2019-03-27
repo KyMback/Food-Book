@@ -53,7 +53,8 @@ namespace FoodBook.WebApi.Middleware
             var viewModel = new ExceptionViewModel
             {
                 StatusCode = context.Response.StatusCode,
-                Message = _environment.IsDevelopment() ? exception.ToString() : null
+                Message = exception.ToString()
+//                Message = _environment.IsDevelopment() ? exception.ToString() : null
             };
             _logger.Log(LogLevel.Error, exception.ToString());
             return JsonConvert.SerializeObject(viewModel);

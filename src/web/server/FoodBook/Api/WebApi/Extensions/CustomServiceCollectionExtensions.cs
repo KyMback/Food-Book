@@ -120,7 +120,7 @@ namespace FoodBook.WebApi.Extensions
         {
             services
                 .AddAuthentication(CookieAuthenticationDefaults.AuthenticationScheme)
-                .AddCookie(cfg =>
+                .AddCookie(CookieAuthenticationDefaults.AuthenticationScheme, cfg =>
                 {
                     cfg.AccessDeniedPath = "/";
                     cfg.ExpireTimeSpan = TimeSpan.FromDays(7);
