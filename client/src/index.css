@@ -119,3 +119,7 @@ code {
     font-family: Comic Sans MS, Comic Sans, cursive;
     color: #83afff;
 }
+
+textarea{
+    resize: none!important;
+}
