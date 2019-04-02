@@ -1,4 +1,4 @@
-using FoodBook.Domain.Entities.Entities.Recipes;
+using FoodBook.Domain.Entities.Recipes;
 using FoodBook.Infrastructure.EFConfigs.Constants;
 using JetBrains.Annotations;
 using Microsoft.EntityFrameworkCore.Metadata.Builders;
@@ -8,7 +8,7 @@ namespace FoodBook.Infrastructure.EFConfigs.ModelsConfigurations
     [UsedImplicitly]
     public class RecipeStepTypeConfiguration : BaseEntityTypeConfiguration<RecipeStep>
     {
-        public override void Configure(EntityTypeBuilder<RecipeStep> builder)
+        protected override void ConfigureEntity(EntityTypeBuilder<RecipeStep> builder)
         {
             builder
                 .Property(step => step.Description)
@@ -21,8 +21,6 @@ namespace FoodBook.Infrastructure.EFConfigs.ModelsConfigurations
                 .IsRequired();
             builder
                 .HasIndex(step => step.RecipeId);
-            
-            base.Configure(builder);
         }
     }
 }

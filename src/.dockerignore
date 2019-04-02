@@ -1,0 +1,15 @@
+# directories
+**/bin/
+**/obj/
+**/out/
+**/.idea/
+**/.vscode/
+**/.vs/
+**/packages/
+**/publish/
+**/node_modules/
+
+# files
+Dockerfile*
+*.db
+foodbook.cmd

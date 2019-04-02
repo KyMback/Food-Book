@@ -1,6 +1,6 @@
 using AutoMapper;
 using FoodBook.Application.GraphQL.Filters;
-using FoodBook.Domain.Entities.Entities;
+using FoodBook.Domain.Entities;
 using GraphQL.Types;
 
 namespace FoodBook.Application.GraphQL.Extensions
@@ -28,7 +28,7 @@ namespace FoodBook.Application.GraphQL.Extensions
             where TSource : ResolveFieldContext<object>
         {
             return mappingExpression
-                .ForMember(d => d.IsReadonly, o => o.MapFrom(s => true));
+                .ForMember(d => d.IsReadonly, o => o.MapFrom(s => false));
         }
     }
 }

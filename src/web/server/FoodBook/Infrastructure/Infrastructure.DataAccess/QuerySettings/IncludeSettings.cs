@@ -1,7 +1,7 @@
 using System;
 using System.Collections.Generic;
 using System.Linq.Expressions;
-using FoodBook.Domain.Entities.Entities;
+using FoodBook.Domain.Entities;
 
 namespace FoodBook.Infrastructure.DataAccess.QuerySettings
 {

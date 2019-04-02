@@ -1,6 +1,6 @@
 using System.Collections.Generic;
 using System.Threading.Tasks;
-using FoodBook.Domain.Entities.Entities;
+using FoodBook.Domain.Entities;
 using FoodBook.Infrastructure.DataAccess.QuerySettings;
 using FoodBook.Infrastructure.DataAccess.ResultHelpers;
 

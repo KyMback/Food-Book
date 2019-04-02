@@ -8,8 +8,8 @@ namespace FoodBook.Application.GraphQL.Extensions
         public static FieldBuilder<object, object> AddPagingArguments(this FieldBuilder<object, object> builder)
         {
             return builder
-                .Argument<IntGraphType>("from", "Indicates sequence number of first element")
-                .Argument<IntGraphType>("count", "Indicates number of elements");
+                .Argument<NonNullGraphType<IntGraphType>>("from", "Indicates sequence number of first element")
+                .Argument<NonNullGraphType<IntGraphType>>("count", "Indicates number of elements");
         }
     }
 }

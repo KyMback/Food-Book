@@ -1,16 +1,18 @@
 ﻿using System;
+using System.Reflection;
 using Autofac;
 using AutoMapper;
 using FoodBook.Application;
 using FoodBook.Application.Common;
-using FoodBook.Application.Common.MappingProfiles;
 using FoodBook.Application.GraphQL;
 using FoodBook.Application.GraphQL.MappingProfiles;
 using FoodBook.Domain;
+using FoodBook.Infrastructure.Common;
 using FoodBook.Infrastructure.DataAccess;
 using FoodBook.Infrastructure.Services;
 using FoodBook.WebApi.Constants;
 using FoodBook.WebApi.Extensions;
+using FoodBook.WebApi.Middleware;
 using MediatR;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
@@ -32,10 +34,17 @@ namespace FoodBook.WebApi
             return services
                 .AddCustomOptions(_hostingEnvironment)
                 .AddMediatR()
+                .AddCustomAuthentication()
                 .AddCustomAutoMapper(_hostingEnvironment, cfg =>
                 {
-                    cfg.AddProfile<RecipeMappingProfile>();
-                    cfg.AddProfile<ConvertersMappingProfile>();
+                    cfg.AddProfiles(new []
+                    {
+                        Assembly.GetAssembly(typeof(WebApiModule)),
+                        Assembly.GetAssembly(typeof(MediatrModule)),
+                        Assembly.GetAssembly(typeof(GraphQLModule)),
+                        Assembly.GetAssembly(typeof(DomainModule)),
+                        Assembly.GetAssembly(typeof(InfrastructureServicesModule))
+                    });
                 })
                 .AddCustomRouting()
                 .AddCustomSwagger()
@@ -46,6 +55,7 @@ namespace FoodBook.WebApi
                         .AddApiExplorer()
                         .AddCustomMvcOptions()
                         .AddCustomJsonOptions(_hostingEnvironment)
+                        .AddAuthorization()
                     )
                 .ToAutofacServiceProvider(builder => 
                     builder
@@ -55,6 +65,7 @@ namespace FoodBook.WebApi
                         .RegisterModule<DomainModule>()
                         .RegisterModule<InfrastructureServicesModule>()
                         .RegisterModule<InfrastructureDataAccessModule>()
+                        .RegisterModule<InfrastructureCommonModule>()
                     );
         }
 
@@ -62,6 +73,7 @@ namespace FoodBook.WebApi
         {
             app
                 .UseCors(CorsPolicyNames.AllowAny)
+                .UseExceptionHandlerMiddleware()
                 .UseDefaultFiles()
                 .UseStaticFiles()
                 .UseSwagger()
@@ -71,8 +83,7 @@ namespace FoodBook.WebApi
                     opt.RoutePrefix = string.Empty;
                     
                 })
-                .UseWhen(context => _hostingEnvironment.IsDevelopment(),
-                    builder => builder.UseDeveloperExceptionPage())
+                .UseAuthentication()
                 .UseMvc();
         }
     }

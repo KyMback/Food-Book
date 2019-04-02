@@ -1,5 +1,5 @@
 using System;
-using FoodBook.Domain.Entities.Entities.Recipes;
+using FoodBook.Domain.Entities.Recipes;
 using FoodBook.Infrastructure.DataAccess.QuerySettings;
 
 namespace FoodBook.Application.GraphQL.Filters.Recipes

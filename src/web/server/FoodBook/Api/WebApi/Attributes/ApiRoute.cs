@@ -1,3 +1,4 @@
+using FoodBook.Infrastructure.Common;
 using Microsoft.AspNetCore.Mvc;
 
 namespace FoodBook.WebApi.Attributes
@@ -8,7 +9,7 @@ namespace FoodBook.WebApi.Attributes
         {
         }
         
-        public ApiRoute() : base($"api/[controller]")
+        public ApiRoute() : base(SystemSettings.DefaultRouteForApiControllers)
         {
         }
     }

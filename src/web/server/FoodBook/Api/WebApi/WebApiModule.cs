@@ -1,5 +1,6 @@
 using Autofac;
 using FoodBook.Infrastructure.Common.Services;
+using FoodBook.WebApi.Middleware;
 
 namespace FoodBook.WebApi
 {
@@ -7,8 +8,29 @@ namespace FoodBook.WebApi
     {
         protected override void Load(ContainerBuilder builder)
         {
-            builder.RegisterType<WebServiceResolver>()
-                .As<IServiceResolver>()
+            builder.RegisterType<WebSafeServiceResolver>()
+                .As<ISafeServiceResolver>()
+                .InstancePerLifetimeScope();
+
+            builder.RegisterType<WebExecutionContextService>()
+                .AsImplementedInterfaces()
+                .InstancePerLifetimeScope();
+
+            builder.RegisterType<AuthenticationService>()
+                .As<IAuthenticationService>()
+                .InstancePerLifetimeScope();
+
+            RegisterMiddlewares(builder);
+        }
+        
+        private void RegisterMiddlewares(ContainerBuilder builder)
+        {
+            builder.RegisterType<ExceptionHandlerMiddleware>()
+                .AsSelf()
+                .SingleInstance();
+
+            builder.RegisterType<AutofacMiddlewareFactory>()
+                .AsImplementedInterfaces()
                 .InstancePerLifetimeScope();
         }
     }

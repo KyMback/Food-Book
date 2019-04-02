@@ -3,10 +3,12 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Linq.Expressions;
 using System.Threading.Tasks;
-using FoodBook.Domain.Entities.Entities;
+using FoodBook.Domain.Entities;
 using FoodBook.Infrastructure.Common.Extensions;
+using FoodBook.Infrastructure.Common.Services;
 using FoodBook.Infrastructure.DataAccess.DataAccessConfigurations;
 using FoodBook.Infrastructure.DataAccess.Enums;
+using FoodBook.Infrastructure.DataAccess.Interfaces.OnBeforeInsertingHandlers;
 using FoodBook.Infrastructure.DataAccess.Interfaces.Repositories;
 using FoodBook.Infrastructure.DataAccess.QuerySettings;
 using FoodBook.Infrastructure.DataAccess.ResultHelpers;
@@ -16,13 +18,17 @@ namespace FoodBook.Infrastructure.DataAccess.Services.Repositories
 {
     public class Repository<TEntity> : IRepository<TEntity> where TEntity: BaseEntity
     {
+        private readonly ISafeServiceResolver _safeServiceResolver;
         private readonly CommonDbContext _dbContext;
 
-        protected DbSet<TEntity> Storage => _dbContext.Set<TEntity>();
+        private DbSet<TEntity> Storage => _dbContext.Set<TEntity>();
         
-        public Repository(CommonDbContext dbContext)
+        public Repository(
+            CommonDbContext dbContext,
+            ISafeServiceResolver safeServiceResolver)
         {
             _dbContext = dbContext;
+            _safeServiceResolver = safeServiceResolver;
         }
         
         public async Task<TEntity> Get(Query<TEntity> query)
@@ -55,6 +61,7 @@ namespace FoodBook.Infrastructure.DataAccess.Services.Repositories
             if (entity.IsNew)
             {
                 SetDataToNewEntity(entity);
+                OnBeforeInsertingHandler(entity);
                 return (await Storage.AddAsync(entity)).Entity;
             }
             
@@ -62,6 +69,18 @@ namespace FoodBook.Infrastructure.DataAccess.Services.Repositories
             MarkAsModified(entity);
             
             return entity;
+        }
+        
+        private void OnBeforeInsertingHandler(TEntity entity)
+        {
+            var services = _safeServiceResolver
+                .GetServices(typeof(IBeforeInsertingHandler<TEntity>))
+                .Cast<IBeforeInsertingHandler<TEntity>>();
+            
+            foreach (IBeforeInsertingHandler<TEntity> beforeInsertingHandler in services)
+            {
+                beforeInsertingHandler.Handle(entity);
+            }
         }
 
         public Task Delete(TEntity entity)
@@ -96,7 +115,8 @@ namespace FoodBook.Infrastructure.DataAccess.Services.Repositories
 
         private async Task<PagingResult<TEntity>> ExecuteWithPaging(Query<TEntity> query)
         {
-            query.IsTracked = false;
+            // Currently commented because of issue with lazy loading
+            //query.IsTracked = false;
 
             IQueryable<TEntity> queryable = ExecuteQuery(query);
 
@@ -157,8 +177,11 @@ namespace FoodBook.Infrastructure.DataAccess.Services.Repositories
             {
                 return queryable;
             }
-            
-            // TODO: will be added on demand
+
+            foreach (var expression in settings.IncludeExpressionsExpressions)
+            {
+                queryable = queryable.Include(expression);
+            }
             return queryable;
         }
         

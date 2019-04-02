@@ -1,5 +1,5 @@
 using System.Collections.Generic;
-using FoodBook.Domain.Entities.Entities;
+using FoodBook.Domain.Entities;
 
 namespace FoodBook.Infrastructure.DataAccess.ResultHelpers
 {

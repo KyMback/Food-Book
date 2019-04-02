@@ -4,11 +4,12 @@ using System.Reflection;
 using Autofac;
 using Autofac.Extensions.DependencyInjection;
 using AutoMapper;
-using FoodBook.Application.Common.MappingProfiles;
 using FoodBook.Application.GraphQL.MappingProfiles;
 using FoodBook.Infrastructure.Common.ApplicationSettings;
+using FoodBook.Infrastructure.Services.Exceptions;
 using FoodBook.WebApi.Constants;
 using GraphQL;
+using Microsoft.AspNetCore.Authentication.Cookies;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
@@ -55,9 +56,9 @@ namespace FoodBook.WebApi.Extensions
                 .SetBasePath(hostingEnvironment.ContentRootPath)
                 .AddJsonFile("appsettings.json")
                 .AddJsonFile($"appsettings.{hostingEnvironment.EnvironmentName}.json", true)
-                .AddJsonFile("appsettings.Personal.json", true);
-
-            builder.AddEnvironmentVariables();
+                .AddJsonFile("appsettings.Personal.json", true)
+                .AddEnvironmentVariables();
+            
             RegisterConfigurations(builder.Build(), services);
             
             return services;
@@ -93,9 +94,10 @@ namespace FoodBook.WebApi.Extensions
                     options.AddPolicy(
                         CorsPolicyNames.AllowAny,
                         x => x
-                            .AllowAnyOrigin()
+                            .WithOrigins("http://localhost:3000")
                             .AllowAnyMethod()
-                            .AllowAnyHeader());
+                            .AllowAnyHeader()
+                            .AllowCredentials());
                 });
         }
         
@@ -111,6 +113,25 @@ namespace FoodBook.WebApi.Extensions
                 Mapper.AssertConfigurationIsValid();
             }
 
+            return services;
+        }
+        
+        public static IServiceCollection AddCustomAuthentication(this IServiceCollection services)
+        {
+            services
+                .AddAuthentication(CookieAuthenticationDefaults.AuthenticationScheme)
+                .AddCookie(CookieAuthenticationDefaults.AuthenticationScheme, cfg =>
+                {
+                    cfg.AccessDeniedPath = "/";
+                    cfg.ExpireTimeSpan = TimeSpan.FromDays(7);
+                    cfg.LoginPath = "/";
+                    cfg.Events.OnRedirectToLogin = context =>
+                    {
+                        context.Response.StatusCode = 401;
+                        throw new NotAuthorizedException();
+                    };
+                });
+            
             return services;
         }
     }
