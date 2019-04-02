@@ -20,30 +20,31 @@ export async function httpGrapQl(query: any) : Promise<any> {
 }
 
 async function request(method: string, url: string, options: Options) {
-    let xhr = new XMLHttpRequest();
-    xhr.open(method, `${domain}/api/${url}`, false);
-    xhr.setRequestHeader('Content-Type', 'application/json');
-    xhr.withCredentials = true;
-    if(method==='GET'){
-        xhr.send();
-    }else{
-        xhr.send(JSON.stringify(options.body));
-    }
+    // let xhr = new XMLHttpRequest();
+    // xhr.open(method, `${domain}/api/${url}`, false);
+    // xhr.setRequestHeader('Content-Type', 'application/json');
+    // xhr.withCredentials = true;
+    // if(method==='GET'){
+    //     xhr.send();
+    // }else{
+    //     xhr.send(JSON.stringify(options.body));
+    // }
 
-    // const response = (method === 'GET')?
-    //     await fetch(`${domain}/api/${url}`, {
-    //         method,
-    //         credentials: "include"
-    //     })
-    //     :  await fetch(`${domain}/api/${url}`, {
-    //         method,
-    //         mode: "no-cors",
-    //         headers: getHeaders(),
-    //         body: JSON.stringify(options.body),
-    //         credentials: "include"
-    //     });
+    const response = (method === 'GET')?
+        await fetch(`${domain}/api/${url}`, {
+            method,
+            credentials: "include"
+        })
+        :  await fetch(`${domain}/api/${url}`, {
+            method,
+            mode: "cors",
+            headers: getHeaders(),
+            body: JSON.stringify(options.body),
+            credentials: "include"
+        });
+        return response;
 
-    return {status: xhr.status, body: xhr.responseText};
+    // return {status: xhr.status, body: xhr.responseText};
 }
 
 function getHeaders(){
