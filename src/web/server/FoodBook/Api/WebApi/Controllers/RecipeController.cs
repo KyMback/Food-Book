@@ -1,5 +1,4 @@
 using System.Threading.Tasks;
-using FoodBook.Application.Common.Recipes;
 using FoodBook.Application.Common.Recipes.Create;
 using FoodBook.WebApi.Attributes;
 using MediatR;

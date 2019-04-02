@@ -1,5 +1,5 @@
 
-const domain = "http://qa-food-book.herokuapp.com";
+const domain = process.env.REACT_APP_API_SERVER;
 
 export async function httpPost(url: string, options: Options) : Promise<any> {
     return await request("POST", url, options)
@@ -20,34 +20,26 @@ export async function httpGrapQl(query: any) : Promise<any> {
 }
 
 async function request(method: string, url: string, options: Options) {
-    // let xhr = new XMLHttpRequest();
-    // xhr.open(method, `${domain}/api/${url}`, false);
-    // xhr.setRequestHeader('Content-Type', 'application/json');
-    // xhr.withCredentials = true;
-    // if(method==='GET'){
-    //     xhr.send();
-    // }else{
-    //     xhr.send(JSON.stringify(options.body));
-    // }
+    const response = await fetch(`${domain}/api/${url}`, {
+        method,
+        headers: getHeaders(),
+        body: getBody(method, options),
+        credentials: "include",
+        mode: "cors"
+    });
 
-    const response = (method === 'GET')?
-        await fetch(`${domain}/api/${url}`, {
-            method,
-            credentials: "include"
-        })
-        :  await fetch(`${domain}/api/${url}`, {
-            method,
-            mode: "cors",
-            headers: getHeaders(),
-            body: JSON.stringify(options.body),
-            credentials: "include"
-        });
-        return response;
-
-    // return {status: xhr.status, body: xhr.responseText};
+    return response;
 }
 
-function getHeaders(){
+function getBody(method: string, options: Options): string | null {
+    if (method === 'GET') {
+        return null;
+    }
+
+    return JSON.stringify(options.body)
+}
+
+function getHeaders() {
     let myHeaders = new Headers();
     myHeaders.append("Content-Type", "application/json");
     return myHeaders;

@@ -21,6 +21,9 @@ IF "%1"=="help" (
 ) ELSE IF "%1 %2 %3"=="qa heroku deploy" (
   call "%~dp0\docker-deploy\deploy-heroku.cmd"
   exit /b
+) ELSE IF "%1 %2"=="client run" (
+  call "%~dp0\client-start.cmd"
+  exit /b
 ) ELSE (
   echo Food-Book CLI: Unknown command: %*
   echo.
@@ -50,7 +53,7 @@ echo - [96mmigration add {MigrationName: string} [0m - adds new migration
 echo   For example: foodbook migration add NewMigrationName
 echo.
 echo ----- Client -------
-echo.
+echo - [96mclient run [0m - runs Food-Book client dev server
 echo ----- Server -------
 echo - [96mserver run [0m - runs Food-Book API using Kestrel web server
 echo ----- Deploy -------
