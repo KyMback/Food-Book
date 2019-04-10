@@ -123,3 +123,10 @@ code {
 textarea{
     resize: none!important;
 }
+
+.circularProgress {
+    z-index: 5000;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+}

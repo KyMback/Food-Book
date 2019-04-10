@@ -1,5 +1,5 @@
 import {Component} from "react";
-import {CustomModal} from "../../components/customModal";
+import {BaseModal} from "../../components/baseModal";
 import React from "react";
 import {Button, Form} from "react-bootstrap";
 
@@ -11,7 +11,6 @@ interface State {
 export class FeedBack extends Component<{}, State> {
     constructor(props: any) {
         super(props);
-
 
         this.state = {
             show: false,
@@ -28,10 +27,6 @@ export class FeedBack extends Component<{}, State> {
         this.setState({value: event.target.value});
     };
 
-    private changeState = (value: boolean) => {
-        this.setState({show: value})
-    };
-
     private getFooter = () => {
         return (
             <div className="d-flex justify-content-between">
@@ -45,25 +40,25 @@ export class FeedBack extends Component<{}, State> {
     }
 
     render() {
-        let props = {
-            "onClick": null,
-            "className": "list-group-item list-group-item-action",
-            "disabled": false,
-            "href": "#feedback"
-        };
-        let trigger = {
-            comp: "button",
-            text: "Feedback",
-            attr: props
-        };
+        // let props = {
+        //     "onClick": null,
+        //     "className": "list-group-item list-group-item-action",
+        //     "disabled": false,
+        //     "href": "#feedback"
+        // };
+        // let trigger = {
+        //     comp: "button",
+        //     text: "Feedback",
+        //     attr: props
+        // };
 
         return (
-            <CustomModal show={this.state.show} handlShow={this.changeState} trigger={trigger} title="About FoodBook" footer={this.getFooter()}>
+            <BaseModal show={this.state.show} title="About FoodBook" footer={this.getFooter()}>
                 <Form.Group controlId="exampleForm.ControlTextarea1">
                     <Form.Control value={this.state.value} as="textarea" rows="3" placeholder="Write here your wish"
                                   onChange={this.handleChange}/>
                 </Form.Group>
-            </CustomModal>
+            </BaseModal>
         );
     }
 }

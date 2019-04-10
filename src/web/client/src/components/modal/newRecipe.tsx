@@ -1,10 +1,10 @@
 import {Component} from "react";
-import {CustomModal} from "../customModal";
+import {BaseModal} from "../baseModal";
 import React from "react";
 import {Button, Col, Form, Modal} from "react-bootstrap";
 import Row from "react-bootstrap/Row";
 // @ts-ignore
-import {FormLine} from "../form/formLine";
+import {FormLine} from "../form/fields/formLine";
 import {createRecipe} from "../../api/recipes/recipesApi/recipesApi";
 
 interface NewRecipeState {
@@ -24,10 +24,6 @@ export class NewRecipe extends Component<{}, NewRecipeState> {
         };
     }
 
-    private changeState = (value: boolean) => {
-        this.setState({show: value})
-    };
-
     private handleChangeTitle = (event: any) => {
         this.setState({
             title: event.target.value,
@@ -46,26 +42,13 @@ export class NewRecipe extends Component<{}, NewRecipeState> {
             "Title": this.state.title,
             "Ingredients": this.state.recipe
         };
-        //
-        // let myHeaders = new Headers();
-        // myHeaders.append("Content-Type", "application/json");
 
         console.log(await createRecipe(data));
     };
 
     public render() {
-        let props = {
-            "onClick": null,
-            "className": "button plus",
-
-        };
-        let trigger = {
-            comp: "a",
-            text: "",
-            attr: props
-        };
         return (
-            <CustomModal show={this.state.show} handlShow={this.changeState} trigger={trigger} title="New Recipe">
+            <BaseModal show={this.state.show} title="New Recipe">
                 <Form onSubmit={this.handleSubmit}>
                     <FormLine controlId="Title"
                               type="text"
@@ -86,7 +69,7 @@ export class NewRecipe extends Component<{}, NewRecipeState> {
                         </Col>
                     </Form.Group>
                 </Form>
-            </CustomModal>
+            </BaseModal>
         )
     }
 }

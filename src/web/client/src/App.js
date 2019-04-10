@@ -2,6 +2,7 @@ import {Component} from "react";
 import {Catalog} from "./internall/catalog/catalog";
 import React from "react";
 import {Menu} from "./internall/menu"
+import { Progress } from "./components/common/Progress";
 
 
 class App extends Component {
@@ -12,6 +13,7 @@ class App extends Component {
                     <Menu/>
                     <Catalog/>
                 </div>
+                <Progress />
             </div>
         );
     }

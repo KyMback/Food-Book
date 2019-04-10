@@ -1,5 +1,5 @@
 import {Component} from "react";
-import {CustomModal} from "../../components/customModal";
+import {BaseModal} from "../../components/baseModal";
 import React from "react";
 
 export class ModalAbout extends Component<{}, {show: boolean;}> {
@@ -11,26 +11,22 @@ export class ModalAbout extends Component<{}, {show: boolean;}> {
         }
     }
 
-    private changeState = (value: boolean) => {
-        this.setState({show: value})
-    };
-
     render() {
-        const props = {
-            onClick: null,
-            className: "list-group-item list-group-item-action",
-            disabled: false,
-            href: "#About"
-        };
-        const trigger = {
-            comp: "button",
-            text: "About",
-            attr: props
-        };
+        // const props = {
+        //     onClick: null,
+        //     className: "list-group-item list-group-item-action",
+        //     disabled: false,
+        //     href: "#About"
+        // };
+        // const trigger = {
+        //     comp: "button",
+        //     text: "About",
+        //     attr: props
+        // };
         return (
-            <CustomModal show={this.state.show} handlShow={this.changeState} trigger={trigger} title="About FoodBook">
+            <BaseModal show={this.state.show} title="About FoodBook">
                 <span>BSUIR Minsk 2k19</span>
-            </CustomModal>
+            </BaseModal>
         );
     }
 }

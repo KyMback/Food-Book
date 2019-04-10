@@ -1,17 +1,16 @@
-import {Component, ReactType} from "react";
-import Modal from "react-bootstrap/Modal";
+import { Component } from "react";
 import React from "react";
 import { Form, Row, Col} from "react-bootstrap";
 
 interface FormLineProps {
     controlId: string;
     type: string;
-    placeholder: string;
+    placeholder?: string;
     labelText: string;
     as: string;
     class?: string;
     row?: number;
-    onChange: object;
+    onChange: (newValue: string) => void;
 }
 
 interface FormLineState {
@@ -20,7 +19,6 @@ interface FormLineState {
 
 export class FormLine extends Component<FormLineProps, FormLineState> {
     public render() {
-
         return (
             <Form.Group as={Row} controlId={this.props.controlId}>
                 <Col sm={2}>
@@ -34,12 +32,13 @@ export class FormLine extends Component<FormLineProps, FormLineState> {
                                   type={this.props.type}
                                   placeholder={this.props.placeholder}
                                   className={this.props.class}
-                                    // @ts-ignore
-                                  onChange={this.props.onChange}/>
+                                  onChange={this.onChange}/>
                 </Col>
             </Form.Group>
         );
     }
 
-
+    private onChange = (event: any) => {
+        this.props.onChange(event.target.value);
+    }
 }
