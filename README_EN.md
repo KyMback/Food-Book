@@ -20,3 +20,6 @@ Dmitry Levdorovich - business analyst. </br>
 - Architecture analysis is [here](./Documents/architecture_analysis_en.md).
 
 - Pair programming report is [here](./Documents/pair_programming.md).
+
+- Technical debt analysis is [here](./Documents/tech_debt.md).
+- 
