@@ -1,3 +1,4 @@
+using System;
 using System.Collections.Generic;
 using System.Threading.Tasks;
 using FoodBook.Domain.Entities.Recipes;
@@ -21,6 +22,13 @@ namespace FoodBook.Domain.Recipes
         /// <param name="query"></param>
         /// <returns></returns>
         Task<IEnumerable<Recipe>> GetAll(Query<Recipe> query);
+
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="id"></param>
+        /// <returns></returns>
+        Task<Recipe> GetById(Guid id);
         
         /// <summary>
         /// 
@@ -34,6 +42,13 @@ namespace FoodBook.Domain.Recipes
         /// </summary>
         /// <param name="recipe"></param>
         /// <returns></returns>
-        Task<Recipe> InsertOrUpdate(Recipe recipe);
+        Task<Recipe> Save(Recipe recipe);
+
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="id"></param>
+        /// <returns></returns>
+        Task Delete(Guid id);
     }
 }

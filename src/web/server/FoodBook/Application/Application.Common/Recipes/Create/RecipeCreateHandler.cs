@@ -30,7 +30,7 @@ namespace FoodBook.Application.Common.Recipes.Create
         {
             Recipe recipe = _mapper.Map<RecipeCreateRequest, Recipe>(request);
 
-            Recipe result = await _recipeService.InsertOrUpdate(recipe);
+            Recipe result = await _recipeService.Save(recipe);
             await _unitOfWork.Commit();
             
             return _mapper.Map<Recipe, RecipeCreateResponse>(result);
