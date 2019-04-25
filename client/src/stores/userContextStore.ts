@@ -8,6 +8,11 @@ class UserContextStore {
     @observable public user?: UserDetails;
 
     @action
+    public signOut = () => {
+        this.user = undefined;
+    };
+
+    @action
     public loadUserDetails = async () =>{
         const resp =  await getUserDetails();
         this.user = {

@@ -2,6 +2,8 @@ import {Component} from "react";
 import {BaseModal} from "../../components/baseModal";
 import React from "react";
 import {Button, Form} from "react-bootstrap";
+import {addNewRecipeStore} from "../../stores/authentication/addNewRecipeStore";
+import {FormLine} from "../../components/form/fields/formLine";
 
 interface State {
     show: boolean;
@@ -18,12 +20,12 @@ export class FeedBack extends Component<{}, State> {
         };
     }
 
-    private sendMessage = ()=>{
+    private sendMessage = () => {
         alert(this.state.value);
         this.setState({show: false});
     };
 
-    private handleChange = (event: any)=>{
+    private handleChange = (event: any) => {
         this.setState({value: event.target.value});
     };
 
@@ -53,12 +55,20 @@ export class FeedBack extends Component<{}, State> {
         // };
 
         return (
-            <BaseModal show={this.state.show} title="About FoodBook" footer={this.getFooter()}>
-                <Form.Group controlId="exampleForm.ControlTextarea1">
-                    <Form.Control value={this.state.value} as="textarea" rows="3" placeholder="Write here your wish"
-                                  onChange={this.handleChange}/>
-                </Form.Group>
-            </BaseModal>
+            <Form>
+                <FormLine controlId="Recipe"
+                          type=""
+                          placeholder="Write here your wish"
+                          labelText="Write here your wish"
+                          as="textarea"
+                          value={this.state.value}
+                          onChange={this.handleChange}/>
+                <Button variant="primary"
+                        type="submit"
+                        onClick={this.sendMessage}>
+                    Send
+                </Button>
+            </Form>
         );
     }
 }

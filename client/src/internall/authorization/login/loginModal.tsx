@@ -32,7 +32,7 @@ const styles = (theme: any) => ({
 });
 
 
-export class LoginModal extends Component<{}, State> {
+export class LoginModal extends Component<{id: string}, State> {
     private fields: InputFieldProps[] = [
         {
             placeholder: "name@example.com",
@@ -58,7 +58,7 @@ export class LoginModal extends Component<{}, State> {
 
     public render() {
         return (
-            <BaseModal onClose={this.hide} show={this.state.show} title="Log in">
+            <BaseModal onClose={this.hide} show={this.state.show} title="Log in" id={this.props.id}>
                 {makeInputFields(this.fields)}
                 <Button  onClick={this.onLogin}>Sign in</Button>
             </BaseModal>
@@ -71,7 +71,10 @@ export class LoginModal extends Component<{}, State> {
     };
 
     private hide = () => {
-        this.setState({show: false});
+        // this.setState({show: false});
+        // @ts-ignore
+        $('#modal_login').modal('close');
+        console.log('close');
     };
 
     @action

@@ -13,21 +13,22 @@ export class Header extends Component {
     private loginModalRef: RefObject<LoginModal> = React.createRef<LoginModal>();
     private registrationModalRef: RefObject<RegistrationModal> = React.createRef<RegistrationModal>();
 
+    private signOut = async () => {
+        let response = await signOut();
+        if(response.succeeded){
+            userContextStore.signOut();
+        }
+    };
+
     public render() {
         const user = userContextStore.user;
 
         return (
-            <div className="d-flex justify-content-between">
-                <div>
-                    <Form inline>
-                        <FormControl type="text" placeholder="Search" className="mr-sm-4"/>
-                        <Button variant="outline-success">Search</Button>
-                    </Form>
-                </div>
+            <div className="d-flex">
                 {user ? (
-                    <div className="d-flex justify-content-between col-2">
-                        <span>{user.login}</span>
-                        <a href="#" onClick={() => signOut()}>SignOut</a>
+                    <div className="loguot">
+                        <span className="user_logo" >{user.login}</span>
+                        <a href="#" onClick={() => this.signOut()}>SignOut</a>
                     </div>
                 ) : this.getUnAuthorizedActions() }
             </div>
@@ -37,23 +38,31 @@ export class Header extends Component {
     private getUnAuthorizedActions = () => {
         return (
             <>
-                <div className="d-flex justify-content-between ">
+                <div className="login-registr">
                     <Button onClick={this.openLoginModal}>SignIn</Button>
                     <Button onClick={this.openRegistrationModal}>Registration</Button>
                 </div>
 
-                <LoginModal ref={this.loginModalRef}/>
-                <RegistrationModal ref={this.registrationModalRef}/>
+                <LoginModal ref={this.loginModalRef} id={'modal_login'}/>
+                <RegistrationModal ref={this.registrationModalRef} id={'modal_reg'}/>
             </>
         )
     };
 
     private openLoginModal = () => {
-        this.loginModalRef.current!.show();
+        // this.loginModalRef.current!.show();
+        // @ts-ignore
+        $('#modal_login').modal();
+        // @ts-ignore
+        $('#modal_login').modal('open');
     };
 
     private openRegistrationModal = () => {
-        this.registrationModalRef.current!.show();
+        // this.registrationModalRef.current!.show();
+        // @ts-ignore
+        $('#modal_reg').modal();
+        // @ts-ignore
+        $('#modal_reg').modal('open');
     };
 
 }

@@ -11,6 +11,7 @@ interface FormLineProps {
     class?: string;
     row?: number;
     onChange: (newValue: string) => void;
+    value?: string;
 }
 
 interface FormLineState {
@@ -21,19 +22,21 @@ export class FormLine extends Component<FormLineProps, FormLineState> {
     public render() {
         return (
             <Form.Group as={Row} controlId={this.props.controlId}>
-                <Col sm={2}>
+                <div className={'col s2'}>
                     <Form.Label>
                         {this.props.labelText}
                     </Form.Label>
-                </Col>
-                <Col sm={10}>
+                </div>
+                <div className={'col s10'}>
                     <Form.Control rows={this.props.row? 5 : 1}
                                   as={this.props.as === "input" ? "input": "textarea"}
                                   type={this.props.type}
                                   placeholder={this.props.placeholder}
                                   className={this.props.class}
-                                  onChange={this.onChange}/>
-                </Col>
+                                  onChange={this.onChange}
+                                  value={this.props.value}
+                    />
+                </div>
             </Form.Group>
         );
     }

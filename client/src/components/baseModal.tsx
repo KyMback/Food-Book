@@ -7,6 +7,7 @@ interface Props {
     footer?: any;
     show: boolean;
     onClose?: () => void;
+    id: string;
 }
 
 export class BaseModal extends Component<Props> {
@@ -16,19 +17,27 @@ export class BaseModal extends Component<Props> {
 
     public render() {
         return (
-            <div>
-                <Modal isOpen={this.props.show}>
-                    <ModalHeader toggle={this.props.onClose}>
-                        {this.props.title}
-                    </ModalHeader>
-                    <ModalBody>
-                        {this.props.children}
-                    </ModalBody>
-                    {this.props.footer && (
-                    <ModalFooter>
-                        {this.props.footer}
-                    </ModalFooter>)}
-                </Modal>
+            <div className={"modal"} id={this.props.id}>
+                <div className="modal-content">
+                    <h4>{this.props.title}</h4>
+                    {this.props.children}
+                </div>
+                {/*<div className="modal-footer">*/}
+                    {/*{this.props.footer}*/}
+                    {/*/!*<a href="#!" className="modal-close waves-effect waves-green btn-flat">Agree</a>*!/*/}
+                {/*</div>*/}
+                {/*<Modal isOpen={this.props.show}>*/}
+                    {/*<ModalHeader toggle={this.props.onClose}>*/}
+                        {/**/}
+                    {/*</ModalHeader>*/}
+                    {/*<ModalBody>*/}
+                        {/*{this.props.children}*/}
+                    {/*</ModalBody>*/}
+                    {/*{this.props.footer && (*/}
+                    {/*<ModalFooter>*/}
+                        {/*{this.props.footer}*/}
+                    {/*</ModalFooter>)}*/}
+                {/*</Modal>*/}
             </div>
         );
     }

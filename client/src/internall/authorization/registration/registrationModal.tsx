@@ -28,7 +28,7 @@ interface State {
 }
 
 @observer
-export class RegistrationModal extends Component<{}, State> {
+export class RegistrationModal extends Component<{id: string}, State> {
     private fields: InputFieldProps[] = [
         {
             labelText: "Login",
@@ -60,7 +60,7 @@ export class RegistrationModal extends Component<{}, State> {
 
     public render() {
         return (
-            <BaseModal onClose={this.hide} show={this.state.show} title="Registration">
+            <BaseModal onClose={this.hide} show={this.state.show} title="Registration" id={this.props.id}>
                 <Form>
                     {makeInputFields(this.fields)}
                     <Form.Group as={Row}>
@@ -76,11 +76,13 @@ export class RegistrationModal extends Component<{}, State> {
     public show = () => {
         registrationStore.resetToDefaults();
         this.setState({show: true});
-    }
+    };
 
     private hide = () => {
-        this.setState({show: false});
-    }
+        // this.setState({show: false});
+        // @ts-ignore
+        $('#modal_reg').modal('close');
+    };
 
     private signUp = async () => {
         const response = await registrationStore.signUp();

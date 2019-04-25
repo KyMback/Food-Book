@@ -10,20 +10,21 @@ interface Props {
     class?: string;
     row?: number;
     onChange: (newValue: string) => void;
+    value?: string;
 }
 
 export class InputField extends Component<Props> {
     public render() {
         return (
             <Form.Group as={Row} controlId={this.props.labelText}>
-                <Col sm={2}>
+                <div className={'col s2'}>
                     <Form.Label>
                         {this.props.labelText}
                     </Form.Label>
-                </Col>
-                <Col sm={10}>
+                </div>
+                <div className={'col s10'}>
                     <InputComponent controlId={this.props.labelText} {...this.props} />
-                </Col>
+                </div>
             </Form.Group>
         );
     }

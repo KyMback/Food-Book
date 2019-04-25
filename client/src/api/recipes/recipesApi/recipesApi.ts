@@ -1,4 +1,4 @@
-import {httpGraphQl, httpPut} from "../../requests";
+import {httpDelete, httpGraphQl, httpPost, httpPut} from "../../requests";
 import { Query, QueryResult } from "material-table";
 import {getUserDetails} from "../userApi/userApi";
 import {async} from "q";
@@ -21,6 +21,14 @@ export async function getAllRecipes(request: Query) : Promise<QueryResult>{
     return await getRecipes(request, true)
 }
 
+export async function updateRecipes(data: any) : Promise<any>{
+    return await httpPost("recipe", {body: data})
+}
+
+export async function deleteRecipes(data: any) : Promise<any>{
+    return await httpDelete(`recipe?id=${data.id}`, {body: {}})
+}
+
 export async function getRecipes(request: Query, get_all: boolean) : Promise<QueryResult> {
     const query = `query test($from: Int!, $count: Int!, $ownerId: String) {
                         recipes(from: $from, count: $count, ownerId: $ownerId) {
@@ -35,11 +43,11 @@ export async function getRecipes(request: Query, get_all: boolean) : Promise<Que
                         }
                     }`;
     let variables;
-    if(get_all) {
+    let user = userContextStore.user === undefined;
+    if(get_all || user) {
         variables = {
             from: request.page * request.pageSize,
             count: request.pageSize,
-            // @ts-ignore
         };
     }else{
         variables = {

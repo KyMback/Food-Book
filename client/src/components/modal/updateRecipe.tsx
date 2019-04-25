@@ -10,27 +10,33 @@ import {loginStore} from "../../stores/authentication/loginStore";
 import {action} from "mobx";
 import {addNewRecipeStore} from "../../stores/authentication/addNewRecipeStore";
 import {Button} from "reactstrap";
+import {updateRecipeStore} from "../../stores/authentication/updateRecipeStore";
+import {observer} from "mobx-react";
 
 interface NewRecipeState {
     show: boolean;
 }
 
-export class NewRecipe extends Component<{}, NewRecipeState> {
+@observer
+export class UpdateRecipe extends Component<{magic?: object}, NewRecipeState> {
+
     private fields: InputFieldProps[] = [
         {
-            placeholder: "New Recipe",
+            placeholder: "New title",
             labelText: "Title",
             type: "text",
             as: "input",
-            onChange: (newValue: string) => addNewRecipeStore.title = newValue,
+            value: updateRecipeStore.title,
+            onChange: (newValue: string) => updateRecipeStore.title = newValue,
         },
         {
             type: "",
             as: "textarea",
             placeholder: "Recipe text",
             labelText: "Recipe",
+            value: updateRecipeStore.ingredients,
             row: 5,
-            onChange: (newValue: string) => loginStore.password = newValue,
+            onChange: (newValue: string) => updateRecipeStore.ingredients = newValue,
         },
     ];
 
@@ -44,58 +50,57 @@ export class NewRecipe extends Component<{}, NewRecipeState> {
     public render() {
         return (
             <div>
-                <button className="btn-floating btn-large waves-effect waves-light red"
-                        onClick={this.show}>
-                    <i className="material-icons">add</i></button>
-                <BaseModal onClose={this.hide} show={this.state.show} title="New Recipe" id={'recipe_create'}>
+                <BaseModal onClose={this.hide} show={this.state.show} title={updateRecipeStore.title} id={'recipe_update'}>
                     <Form>
                         <FormLine controlId="Title"
                                   type="text"
-                                  placeholder="New Recipe"
+                                  placeholder="New title"
                                   labelText="Title"
                                   as="input"
-                                  onChange={(newValue: string) => addNewRecipeStore.title = newValue}/>
+                                  value={updateRecipeStore.title}
+                                  onChange={(newValue: string) => updateRecipeStore.title = newValue}/>
                         <FormLine controlId="Recipe"
                                   type=""
                                   placeholder="Recipe text"
                                   labelText="Recipe"
                                   as="textarea"
+                                  value={updateRecipeStore.ingredients}
                                   row={5}
-                                  onChange={(newValue: string) => addNewRecipeStore.ingredients = newValue}/>
+                                  onChange={(newValue: string) => updateRecipeStore.ingredients = newValue}/>
                         <Form.Group as={Row}>
                             <Col sm={{span: 10, offset: 2}}>
-                                <Button  onClick={this.onCreate}>Create</Button>
+                                <Button  onClick={this.onCreate}>Update</Button>
                             </Col>
                         </Form.Group>
                     </Form>
                 </BaseModal>
             </div>
         );
+
     }
 
-    public show = () => {
-        addNewRecipeStore.resetToDefaults();
-        // this.setState({show: true});
+    public showWindow = () => {
         // @ts-ignore
         $('.modal').modal();
         // @ts-ignore
-        $('#recipe_create').modal('open');
+        $('#recipe_update').modal('open');
     };
 
     private hide = () => {
         // this.setState({show: false});
         // @ts-ignore
-        $('#recipe_create').modal('close');
+        $('#recipe_update').modal('close');
+        // $('#menu-').children()[1].children[0].children[0].click();
         // @ts-ignore
-        $('#test2 > div > div > div.MuiPaper-root-5.MuiPaper-elevation2-9.MuiPaper-rounded-6 > table > tfoot > tr > td > div > div.MuiInputBase-root-161.MuiTablePagination-input-151 > div > div').click();
+        $('#test1 > div > div > table > tfoot > tr > td > div > div.MuiInputBase-root-161.MuiTablePagination-input-151 > div > div').click();
         // @ts-ignore
-        $('#menu- > div.MuiPaper-root-5.MuiMenu-paper-104.MuiPaper-elevation8-15.MuiPaper-rounded-6.MuiPopover-paper-105 > ul > li.MuiButtonBase-root-92.MuiListItem-root-236.MuiListItem-default-239.MuiListItem-gutters-244.MuiListItem-button-245.MuiListItem-selected-247.MuiMenuItem-root-233.MuiMenuItem-selected-235.MuiMenuItem-gutters-234.MuiTablePagination-menuItem-152').click();
+        document.getElementById('menu-').children[1].children[0].children[0].click();
     };
 
     @action
     private onCreate = async (event: MouseEvent<any>) => {
         event.preventDefault();
-        const result = await addNewRecipeStore.create();
+        const result = await updateRecipeStore.create();
         if (result) {
             this.hide();
         }

@@ -24,7 +24,7 @@ export class ModalAbout extends Component<{}, {show: boolean;}> {
         //     attr: props
         // };
         return (
-            <BaseModal show={this.state.show} title="About FoodBook">
+            <BaseModal show={this.state.show} title="About FoodBook" id={'about_modal'}>
                 <span>BSUIR Minsk 2k19</span>
             </BaseModal>
         );

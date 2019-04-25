@@ -9,6 +9,7 @@ export interface InputFieldProps {
     row?: number;
     as?: string;
     onChange: (newValue: string) => void;
+    value?: string;
 }
 
 export function makeInputFields(options: InputFieldProps[]): JSX.Element[] {
