@@ -1,6 +1,7 @@
 using System;
 using System.Threading.Tasks;
 using FoodBook.Application.GraphQL.Schemas;
+using FoodBook.Infrastructure.Common;
 using FoodBook.Infrastructure.Common.Extensions;
 using FoodBook.WebApi.Attributes;
 using FoodBook.WebApi.Models;
@@ -12,7 +13,7 @@ namespace FoodBook.WebApi.Controllers
 {
     [ApiRoute]
     [ApiController]
-    [Produces("application/json")]
+    [Produces(SystemSettings.DefaultContentTypeForApiControllers)]
     public class GraphQLController: ControllerBase
     {
         private readonly IGraphSchemaProvider _graphSchemaProvider;
